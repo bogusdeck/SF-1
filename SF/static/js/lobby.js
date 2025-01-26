@@ -1,7 +1,8 @@
-angular.module('gameApp').controller('LobbyController', function($scope, $http, $window) {
+angular.module('gameApp').controller('LobbyController', function ($scope, $http, $window) {
     $scope.availableGames = [];
     $scope.loading = false;
     $scope.error = null;
+    $scope.gameId = '';
 
     // Configure $http defaults
     $http.defaults.xsrfCookieName = 'csrftoken';
@@ -9,7 +10,7 @@ angular.module('gameApp').controller('LobbyController', function($scope, $http, 
     $http.defaults.withCredentials = true;
 
     // Host a new game
-    $scope.hostGame = function() {
+    $scope.hostGame = function () {
         $scope.loading = true;
         $scope.error = null;
 
@@ -22,7 +23,7 @@ angular.module('gameApp').controller('LobbyController', function($scope, $http, 
             },
             withCredentials: true
         }).then(
-            function(response) {
+            function (response) {
                 $scope.loading = false;
                 if (response.data.success) {
                     // Redirect to the game room using room_id
@@ -31,7 +32,7 @@ angular.module('gameApp').controller('LobbyController', function($scope, $http, 
                     $scope.error = response.data.message || 'Failed to create game';
                 }
             },
-            function(error) {
+            function (error) {
                 $scope.loading = false;
                 console.error('Error hosting game:', error);
                 if (error.status === 403) {
@@ -46,43 +47,55 @@ angular.module('gameApp').controller('LobbyController', function($scope, $http, 
         );
     };
 
-    // Show available games modal
-    $scope.showAvailableGames = function() {
+    $scope.joinGameById = function () {
+        console.log("joingamebyid working")
+        if (!$scope.gameId) {
+                $scope.error = 'please enter a valid Game ID';
+                return;
+            }
+
         $scope.loading = true;
         $scope.error = null;
-
+        console.log("1")
         $http({
-            method: 'GET',
-            url: '/game/api/games/available/',
+            method: 'POST',
+            url: '/game/api/join/',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken')
             },
+            data: { room_id: $scope.gameId },
             withCredentials: true
         }).then(
-            function(response) {
+            function (response) {
                 $scope.loading = false;
-                $scope.availableGames = response.data;
-                // Show the modal using Bootstrap
-                new bootstrap.Modal(document.getElementById('availableGamesModal')).show();
+                console.log("2")
+                if (response.data.success) {
+                    console.log("success")
+                    $window.location.href = response.data.data.room_url;
+                } else {
+                    console.log("error")
+                    $scope.error = response.data.message || 'Failed to join game';
+                }
             },
-            function(error) {
+            function (error) {
                 $scope.loading = false;
-                console.error('Error fetching games:', error);
+                console.log("4")
+                console.error('Error joining game :', error);
                 if (error.status === 403) {
-                    $scope.error = 'Authentication error. Please make sure you are logged in.';
+                    $scope.error = 'Authentication Error, Please make sure you are logged in';
                     if (!getCookie('sessionid')) {
                         $window.location.href = '/accounts/login/?next=/game/';
+                    } else {
+                        $scope.error = error.data?.message || 'Failed to join game.Please try again';
                     }
-                } else {
-                    $scope.error = 'Failed to fetch available games. Please try again.';
                 }
-            }
-        );
-    };
+             }
+        )
+    }
 
     // Join an existing game
-    $scope.joinGame = function(game) {
+    $scope.joinGame = function (game) {
         $scope.loading = true;
         $scope.error = null;
 
@@ -96,7 +109,7 @@ angular.module('gameApp').controller('LobbyController', function($scope, $http, 
             data: { room_id: game.room_id },
             withCredentials: true
         }).then(
-            function(response) {
+            function (response) {
                 $scope.loading = false;
                 if (response.data.success) {
                     // Redirect to the game room using room_id
@@ -105,7 +118,7 @@ angular.module('gameApp').controller('LobbyController', function($scope, $http, 
                     $scope.error = response.data.message || 'Failed to join game';
                 }
             },
-            function(error) {
+            function (error) {
                 $scope.loading = false;
                 console.error('Error joining game:', error);
                 if (error.status === 403) {

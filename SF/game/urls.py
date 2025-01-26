@@ -20,4 +20,5 @@ urlpatterns = [
     path('api/games/', views.GameSessionViewSet.as_view({'get': 'list', 'post': 'create'}), name='game-list'),
     path('api/games/<str:room_id>/join/', views.GameSessionViewSet.as_view({'post': 'join'}), name='game-join'),
     path('api/games/<str:room_id>/start/', views.GameSessionViewSet.as_view({'post': 'start'}), name='game-start'),
+    path('api/games/<str:room_id>/players/', views.GameSessionViewSet.as_view({'get': 'players'}), name='game-players'),
 ]

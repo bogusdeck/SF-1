@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
 from .models import Character, Friendship, GameSession, GameProgress, Game
 from django.db import models
+from django.middleware.csrf import get_token
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
@@ -20,7 +21,14 @@ def game_lobby(request):
 @login_required
 def game_room(request, room_id):
     game = get_object_or_404(GameSession, room_id=room_id)
-    return render(request, 'game/room.html', {'game': game})
+    print(game.players)
+    print(game.host)
+    print(game.status)
+    context = {
+        'game':game,
+        'csrf_token':get_token(request),
+    }
+    return render(request, 'game/room.html', context)
 
 # Template views for chat, friends, and profile
 def chat_view(request):
@@ -40,22 +48,22 @@ def profile_view(request):
 
 class CharacterViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    
+
     def get_queryset(self):
         return Character.objects.filter(user=self.request.user)
-    
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 class FriendshipViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    
+
     def get_queryset(self):
         user = self.request.user
         return Friendship.objects.filter(
             models.Q(sender=user) | models.Q(receiver=user)
         )
-    
+
     @action(detail=True, methods=['post'])
     def accept(self, request, pk=None):
         friendship = self.get_object()
@@ -70,7 +78,23 @@ class FriendshipViewSet(viewsets.ModelViewSet):
 
 class GameSessionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    
+    lookup_field = 'room_id'
+
+    @action(detail=True, methods=['get'])
+    def players(self, request, *args, **kwargs):
+        session = self.get_object()
+        players_data = []
+
+        for player in session.players.all():
+            players_data.append({
+                'username': player.username,
+                'is_host': player == session.host
+            })
+
+        return Response({
+            'players': players_data
+        })
+
     def get_queryset(self):
         return GameSession.objects.filter(
             models.Q(host=self.request.user) | 
@@ -211,3 +235,28 @@ def join_game(request):
             'room_url': f'/game/room/{game.room_id}/'
         }
     })
+
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication, JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def leave_game(request):
+    room_id = request.data.get('room_id')
+
+    if not room_id:
+        return Response({'error': 'room_id is required'}, status = status.HTTP_400_BAD_REQUEST)
+    
+    game = get_object_or_404(GameSession, room_id = room_id)
+
+    if request.user not in game.players.all():
+        return Response({'error':'You are not part of this game '}, status=status.HTTP_400_BAD_REQUEST)
+    
+    game.player.remove(request.user)
+
+    GameProgress.objects.filter(session=game, player=request.user).delete()
+
+    if game.player.count() ==0:
+        game.status = 'completed'
+        game.ended_at = timezone.now()
+        game.save()
+
+    return Response({'success':True, 'message':'You have left the game'})

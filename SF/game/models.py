@@ -19,7 +19,7 @@ class Character(models.Model):
         ('archer', 'Archer'),
         ('mage', 'Mage'),
     )
-    
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     character_type = models.CharField(max_length=20, choices=TYPES)
     level = models.IntegerField(default=1)
@@ -33,7 +33,7 @@ class Friendship(models.Model):
         ('accepted', 'Accepted'),
         ('rejected', 'Rejected'),
     )
-    
+
     sender = models.ForeignKey(User, related_name='friendship_requests_sent', on_delete=models.CASCADE)
     receiver = models.ForeignKey(User, related_name='friendship_requests_received', on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS, default='pending')
@@ -77,13 +77,25 @@ class GameSession(models.Model):
         ('in_progress', 'In Progress'),
         ('completed', 'Completed'),
     )
-    
+
+    id = models.AutoField(primary_key=True)
     host = models.ForeignKey(User, related_name='hosted_sessions', on_delete=models.CASCADE)
     players = models.ManyToManyField(User, related_name='joined_sessions')
     status = models.CharField(max_length=20, choices=STATUS, default='waiting')
     created_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(null=True, blank=True)
     room_id = models.CharField(max_length=6, unique=True, default=generate_room_id)
+
+    def remove_player(self, user):
+        if user in self.players.all():
+            self.players.remove(user)
+            GameProgress.objects.filter(session=self, player=user).delete()
+
+        if self.players.count()==0:
+            self.status= 'completed'
+            self.ended_at = timezone.now()
+            self.save()
+            
 
 class GameProgress(models.Model):
     session = models.ForeignKey(GameSession, on_delete=models.CASCADE)
