@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Game Room{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="mb-0">Game Room</h1>
+                    <p class="text-muted mb-0">Room ID: #{{ game.room_id }}</p>
+                </div>
+                <div class="badge bg-primary fs-6">
+                    Status: {{ game.status|title }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Player List -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Players</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        {% for player in game.players.all %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ player.username }}
+                            {% if player == game.host %}
+                            <span class="badge bg-warning">Host</span>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ game.players.count }}/4 Players
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Area -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Game Area</h5>
+                </div>
+                <div class="card-body">
+                    {% if user == game.host and game.status == 'waiting' %}
+                    <div class="text-center">
+                        <div class="alert alert-info mb-4">
+                            <h4 class="alert-heading mb-2">Share this Room ID with your friends</h4>
+                            <p class="display-4 mb-0">#{{ game.room_id }}</p>
+                        </div>
+                        <button class="btn btn-primary btn-lg" onclick="startGame()">
+                            Start Game
+                        </button>
+                    </div>
+                    {% elif game.status == 'waiting' %}
+                    <div class="text-center">
+                        <p>Waiting for host to start the game...</p>
+                    </div>
+                    {% else %}
+                    <div class="text-center">
+                        <p>Game in progress...</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Area -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Chat</h5>
+                </div>
+                <div class="card-body" style="height: 300px; overflow-y: auto;">
+                    <div id="chat-messages" class="mb-3">
+                        <!-- Chat messages will be displayed here -->
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="input-group">
+                        <input type="text" id="chat-input" class="form-control" placeholder="Type your message...">
+                        <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function startGame() {
+        fetch('/game/api/games/{{ game.room_id }}/start/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.reload();
+            } else {
+                alert(data.message || 'Failed to start game');
+            }
+        })
+        .catch(error => {
+            console.error('Error starting game:', error);
+            alert('Failed to start game. Please try again.');
+        });
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const message = input.value.trim();
+        if (message) {
+            // Add message sending logic here
+            console.log('Sending message:', message);
+            input.value = '';
+        }
+    }
+
+    // Handle Enter key in chat input
+    document.getElementById('chat-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+</script>
+{% endblock %}

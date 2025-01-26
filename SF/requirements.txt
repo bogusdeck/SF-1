@@ -1,0 +1,11 @@
+Django>=4.2.0
+djangorestframework
+django-cors-headers
+python-dotenv
+Pillow
+channels>=4.0.0
+channels-redis>=4.1.0
+redis>=5.0.0
+djangorestframework-simplejwt
+python-dateutil
+psycopg2-binary

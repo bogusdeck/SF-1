@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Game Platform{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 mb-4">Welcome to Game Platform</h1>
+            <p class="lead">Connect with friends, play games, and have fun!</p>
+            {% if not user.is_authenticated %}
+            <div class="mt-4">
+                <a href="{% url 'login' %}" class="btn btn-primary btn-lg me-3">Login</a>
+                <a href="{% url 'signup' %}" class="btn btn-outline-primary btn-lg">Sign Up</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

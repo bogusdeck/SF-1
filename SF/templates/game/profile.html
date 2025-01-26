@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - Game Platform{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">Profile</h1>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.name }}</h5>
+                    <p class="card-text">Email: {{ user.email }}</p>
+                    <p class="card-text">Username: {{ user.username }}</p>
+                    <p class="card-text">Date of Birth: {{ user.dob }}</p>
+                    <p class="card-text">High Score: {{ user.high_score }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

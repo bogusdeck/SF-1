@@ -1,0 +1,34 @@
+<!-- templates/login.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow">
+            <div class="card-body" ng-controller="AuthController">
+                <h2 class="card-title text-center mb-4">Login</h2>
+                <form ng-submit="login()">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" ng-model="email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" ng-model="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="alert alert-danger" ng-if="error" role="alert">
+                        [[ error ]]
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+                <p class="text-center mt-3">
+                    Don't have an account? <a href="{% url 'signup' %}">Sign Up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
