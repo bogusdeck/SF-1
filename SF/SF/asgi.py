@@ -17,10 +17,10 @@ from game.routing import websocket_urlpatterns
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SF.settings')
 
 application = ProtocolTypeRouter({
-    "http": get_asgi_application(),
-    "websocket": AuthMiddlewareStack(
+    "http": get_asgi_application(),  # Handle HTTP requests
+    "websocket": AuthMiddlewareStack(  # Handle WebSocket connections with authentication
         URLRouter(
-            websocket_urlpatterns
+            websocket_urlpatterns  # Use WebSocket URL patterns from game/routing.py
         )
     ),
 })

@@ -1,262 +1,92 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from rest_framework import status, viewsets
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from django.utils import timezone
-from .models import Character, Friendship, GameSession, GameProgress, Game
 from django.db import models
-from django.middleware.csrf import get_token
-from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
-from rest_framework.authentication import SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+
+User = get_user_model()
+
+class MusicRoom(models.Model):
+    """
+    Represents a music room where users can join and listen to music together.
+    """
+    name = models.CharField(max_length=255, unique=True)  # Unique name for the room
+    host = models.ForeignKey(User, on_delete=models.CASCADE, related_name='hosted_music_rooms')  # Room creator
+    spotify_playlist_id = models.CharField(max_length=255)  # Spotify playlist ID
+    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp when the room was created
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ('waiting', 'Waiting'),  # Room is waiting for users to join
+            ('active', 'Active'),    # Room is active and playing music
+            ('ended', 'Ended')       # Room has ended
+        ],
+        default='waiting'
+    )
+
+    def __str__(self):
+        return f"MusicRoom: {self.name} (Host: {self.host.username})"
+
+    @property
+    def player_count(self):
+        """Returns the number of users in the room."""
+        return self.users_in_room.count()
+
+    def add_user(self, user):
+        """Adds a user to the room."""
+        UserInRoom.objects.create(user=user, room=self)
+
+    def remove_user(self, user):
+        """Removes a user from the room."""
+        UserInRoom.objects.filter(user=user, room=self).delete()
+        if self.player_count == 0:
+            self.status = 'ended'
+            self.save()
+
+    def start_room(self):
+        """Starts the room and changes its status to active."""
+        if self.host:
+            self.status = 'active'
+            self.save()
+
+    def end_room(self):
+        """Ends the room and changes its status to ended."""
+        self.status = 'ended'
+        self.save()
 
 
-@login_required
-def game_lobby(request):
-    return render(request, 'game/lobby.html')
+class UserInRoom(models.Model):
+    """
+    Represents a user in a music room.
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='music_rooms_joined')  # User in the room
+    room = models.ForeignKey(MusicRoom, on_delete=models.CASCADE, related_name='users_in_room')  # Room the user is in
+    joined_at = models.DateTimeField(auto_now_add=True)  # Timestamp when the user joined the room
 
-@login_required
-def game_room(request, room_id):
-    game = get_object_or_404(GameSession, room_id=room_id)
-    print(game.players)
-    print(game.host)
-    print(game.status)
-    context = {
-        'game':game,
-        'csrf_token':get_token(request),
-    }
-    return render(request, 'game/room.html', context)
+    def __str__(self):
+        return f"{self.user.username} in {self.room.name}"
 
-# Template views for chat, friends, and profile
-def chat_view(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
-    return render(request, 'game/chat.html')
+    class Meta:
+        unique_together = ('user', 'room')  # Ensure a user can only join a room once
 
-def friends_view(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
-    return render(request, 'game/friends.html')
 
-def profile_view(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
-    return render(request, 'game/profile.html')
+class Friendship(models.Model):
+    """
+    Represents a friendship between two users.
+    """
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_friendships')  # User who sent the request
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_friendships')  # User who received the request
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ('pending', 'Pending'),  # Friendship request is pending
+            ('accepted', 'Accepted'),  # Friendship request is accepted
+            ('rejected', 'Rejected')  # Friendship request is rejected
+        ],
+        default='pending'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp when the friendship was created
 
-class CharacterViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    def __str__(self):
+        return f"Friendship: {self.sender.username} -> {self.receiver.username} ({self.status})"
 
-    def get_queryset(self):
-        return Character.objects.filter(user=self.request.user)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-class FriendshipViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        user = self.request.user
-        return Friendship.objects.filter(
-            models.Q(sender=user) | models.Q(receiver=user)
-        )
-
-    @action(detail=True, methods=['post'])
-    def accept(self, request, pk=None):
-        friendship = self.get_object()
-        if friendship.receiver != request.user:
-            return Response(
-                {'error': 'Only the receiver can accept the request'},
-                status=status.HTTP_403_FORBIDDEN
-            )
-        friendship.status = 'accepted'
-        friendship.save()
-        return Response({'status': 'accepted'})
-
-class GameSessionViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    lookup_field = 'room_id'
-
-    @action(detail=True, methods=['get'])
-    def players(self, request, *args, **kwargs):
-        session = self.get_object()
-        players_data = []
-
-        for player in session.players.all():
-            players_data.append({
-                'username': player.username,
-                'is_host': player == session.host
-            })
-
-        return Response({
-            'players': players_data
-        })
-
-    def get_queryset(self):
-        return GameSession.objects.filter(
-            models.Q(host=self.request.user) | 
-            models.Q(players=self.request.user)
-        ).distinct()
-    
-    def perform_create(self, serializer):
-        session = serializer.save(host=self.request.user)
-        session.players.add(self.request.user)
-        
-        # Create initial game progress for host
-        character = Character.objects.get(user=self.request.user)
-        GameProgress.objects.create(
-            session=session,
-            player=self.request.user,
-            character=character,
-            current_health=character.health
-        )
-    
-    @action(detail=True, methods=['post'])
-    def join(self, request, pk=None):
-        session = self.get_object()
-        if session.status != 'waiting':
-            return Response(
-                {'error': 'Game has already started'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        
-        session.players.add(request.user)
-        character = Character.objects.get(user=request.user)
-        GameProgress.objects.create(
-            session=session,
-            player=request.user,
-            character=character,
-            current_health=character.health
-        )
-        return Response({'status': 'joined'})
-    
-    @action(detail=True, methods=['post'])
-    def start(self, request, pk=None):
-        session = self.get_object()
-        if session.host != request.user:
-            return Response(
-                {'error': 'Only the host can start the game'},
-                status=status.HTTP_403_FORBIDDEN
-            )
-        
-        session.status = 'in_progress'
-        session.save()
-        return Response({'status': 'started'})
-
-@api_view(['POST'])
-@authentication_classes([SessionAuthentication, JWTAuthentication])
-@permission_classes([IsAuthenticated])
-def host_game(request):
-    print(f"User: {request.user}, Authenticated: {request.user.is_authenticated}")
-    print(f"Headers: {request.headers}")
-    print(f"Data: {request.data}")
-    
-    try:
-        # Create a new game session
-        game = GameSession.objects.create(
-            host=request.user,
-            status='waiting'
-        )
-        # Add the host as the first player
-        game.players.add(request.user)
-        
-        return Response({
-            'success': True,
-            'message': 'Game created successfully',
-            'data': {
-                'game_id': game.id,
-                'room_id': game.room_id,
-                'host': {
-                    'id': game.host.id,
-                    'username': game.host.username
-                },
-                'status': game.status,
-                'player_count': game.players.count(),
-                'players': [{
-                    'id': player.id,
-                    'username': player.username
-                } for player in game.players.all()],
-                'created_at': game.created_at,
-                'room_url': f'/game/room/{game.room_id}/'
-            }
-        }, status=status.HTTP_201_CREATED)
-    except Exception as e:
-        print(f"Error: {str(e)}")
-        return Response({
-            'success': False,
-            'message': 'Failed to create game',
-            'error': str(e)
-        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-@api_view(['GET'])
-@authentication_classes([SessionAuthentication, JWTAuthentication])
-@permission_classes([IsAuthenticated])
-def available_games(request):
-    games = GameSession.objects.filter(status='waiting').exclude(host=request.user)
-    return Response([{
-        'id': game.id,
-        'room_id': game.room_id,
-        'host': game.host.username,
-        'players': game.players.count(),
-        'created_at': game.created_at
-    } for game in games])
-
-@api_view(['POST'])
-@authentication_classes([SessionAuthentication, JWTAuthentication])
-@permission_classes([IsAuthenticated])
-def join_game(request):
-    room_id = request.data.get('room_id')
-    if not room_id:
-        return Response({'error': 'room_id is required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-    game = get_object_or_404(GameSession, room_id=room_id)
-    
-    if game.status != 'waiting':
-        return Response({'error': 'Game is no longer available'}, status=status.HTTP_400_BAD_REQUEST)
-    
-    if game.players.count() >= 4:
-        return Response({'error': 'Game is full'}, status=status.HTTP_400_BAD_REQUEST)
-    
-    if request.user in game.players.all():
-        return Response({'error': 'You are already in this game'}, status=status.HTTP_400_BAD_REQUEST)
-    
-    game.players.add(request.user)
-    return Response({
-        'success': True,
-        'message': 'Successfully joined the game',
-        'data': {
-            'game_id': game.id,
-            'room_id': game.room_id,
-            'status': game.status,
-            'player_count': game.players.count(),
-            'room_url': f'/game/room/{game.room_id}/'
-        }
-    })
-
-@api_view(['POST'])
-@authentication_classes([SessionAuthentication, JWTAuthentication])
-@permission_classes([IsAuthenticated])
-def leave_game(request):
-    room_id = request.data.get('room_id')
-
-    if not room_id:
-        return Response({'error': 'room_id is required'}, status = status.HTTP_400_BAD_REQUEST)
-    
-    game = get_object_or_404(GameSession, room_id = room_id)
-
-    if request.user not in game.players.all():
-        return Response({'error':'You are not part of this game '}, status=status.HTTP_400_BAD_REQUEST)
-    
-    game.player.remove(request.user)
-
-    GameProgress.objects.filter(session=game, player=request.user).delete()
-
-    if game.player.count() ==0:
-        game.status = 'completed'
-        game.ended_at = timezone.now()
-        game.save()
-
-    return Response({'success':True, 'message':'You have left the game'})
+    class Meta:
+        unique_together = ('sender', 'receiver')  # Ensure unique friendships

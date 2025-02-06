@@ -224,4 +224,4 @@ LOGGING = {
     },
 }
 
-logging.getLogger().setLevel(logging.DEBUG)  
+logging.getLogger().setLevel(logging.DEBUG)

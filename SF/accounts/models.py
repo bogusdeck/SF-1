@@ -5,25 +5,48 @@ from django.core.validators import MinLengthValidator
 from django.utils.translation import gettext_lazy as _
 
 class CustomUser(AbstractUser):
-    name = models.CharField(max_length=255)
-    email = models.EmailField(_('email address'), unique=True)
-    dob = models.DateField(verbose_name='Date of Birth')
-    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
-    high_score = models.IntegerField(default=0)
+    """
+    Custom user model extending Django's AbstractUser.
+    """
+    name = models.CharField(max_length=255, verbose_name='Full Name')  # User's full name
+    email = models.EmailField(_('email address'), unique=True)  # Unique email address
+    dob = models.DateField(verbose_name='Date of Birth')  # User's date of birth
+    profile_picture = models.ImageField(
+        upload_to='profile_pictures/',
+        null=True,
+        blank=True,
+        verbose_name='Profile Picture'
+    )  # User's profile picture
+    spotify_access_token = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name='Spotify Access Token'
+    )  # Spotify access token for API integration
+    spotify_refresh_token = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name='Spotify Refresh Token'
+    )  # Spotify refresh token for API integration
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'name', 'dob']
+    USERNAME_FIELD = 'email'  # Use email as the unique identifier for authentication
+    REQUIRED_FIELDS = ['username', 'name', 'dob']  # Additional required fields
 
     def __str__(self):
-        return self.email
+        return self.email  # String representation of the user
 
-class Friendship(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='friendships')
-    friend = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='friend')
-    created_at = models.DateTimeField(auto_now_add=True)
+    @property
+    def profile_picture_url(self):
+        """Returns the URL of the user's profile picture."""
+        if self.profile_picture and hasattr(self.profile_picture, 'url'):
+            return self.profile_picture.url
+        return settings.DEFAULT_PROFILE_PICTURE_URL  # Default profile picture URL
 
-    class Meta:
-        unique_together = ('user', 'friend')
-    
-    def __str__(self):
-        return f"{self.user} and {self.friend}"
+    def get_full_name(self):
+        """Returns the user's full name."""
+        return self.name
+
+    def get_short_name(self):
+        """Returns the user's short name (first name)."""
+        return self.name.split()[0] if self.name else self.username

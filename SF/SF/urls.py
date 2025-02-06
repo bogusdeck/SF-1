@@ -2,11 +2,22 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from accounts.views import home_view
+from game import consumers
 
 urlpatterns = [
-    path('', home_view, name='home'),
+    # Admin
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),  # This will include both regular and API URLs
-    path('game/', include('game.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+    # Accounts App
+    path('accounts/', include('accounts.urls')),
+
+    # Game App (Updated for Music Platform)
+    path('', include('game.urls')),
+
+    # WebSocket Routing for Music Rooms
+    path('ws/music_room/<str:room_id>/', consumers.MusicRoomConsumer.as_asgi()),
+]
+
+# Serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

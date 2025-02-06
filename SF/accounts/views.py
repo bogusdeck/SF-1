@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .serializers import RegisterSerializer, UserSerializer
 from django.contrib.auth import get_user_model
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from datetime import datetime
-from django.contrib.auth import logout
+import requests
+from django.conf import settings
 
 User = get_user_model()
 
@@ -17,18 +18,18 @@ def home_view(request):
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('game_lobby')
+        return redirect('music_lobby')  # Redirect to music lobby instead of game lobby
     return render(request, 'login.html')
 
 def signup_view(request):
     if request.user.is_authenticated:
-        return redirect('game_lobby')
+        return redirect('music_lobby')  # Redirect to music lobby instead of game lobby
     return render(request, 'signup.html')
 
 def logout_view(request):
     if request.user.is_authenticated:
         logout(request)
-    return redirect('home') 
+    return redirect('home')
 
 # API views for user authentication
 class RegisterView(APIView):
@@ -82,3 +83,70 @@ class LogoutView(APIView):
         return Response({
             "error": "You are not logged in"
         }, status=status.HTTP_400_BAD_REQUEST)
+
+# Profile and Spotify Integration Views
+class ProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        """Retrieve the authenticated user's profile."""
+        user = request.user
+        return Response({
+            "user": UserSerializer(user).data
+        }, status=status.HTTP_200_OK)
+
+    def put(self, request):
+        """Update the authenticated user's profile."""
+        user = request.user
+        data = request.data
+
+        # Update profile fields
+        user.name = data.get('name', user.name)
+        user.dob = data.get('dob', user.dob)
+        if 'profile_picture' in request.FILES:
+            user.profile_picture = request.FILES['profile_picture']
+        user.save()
+
+        return Response({
+            "message": "Profile updated successfully",
+            "user": UserSerializer(user).data
+        }, status=status.HTTP_200_OK)
+
+class SpotifyConnectView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        """Connect the user's Spotify account."""
+        user = request.user
+        access_token = request.data.get('access_token')
+        refresh_token = request.data.get('refresh_token')
+
+        if not access_token or not refresh_token:
+            return Response({
+                "error": "Both access_token and refresh_token are required"
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Save Spotify tokens to the user's profile
+        user.spotify_access_token = access_token
+        user.spotify_refresh_token = refresh_token
+        user.save()
+
+        return Response({
+            "message": "Spotify account connected successfully"
+        }, status=status.HTTP_200_OK)
+
+class SpotifyDisconnectView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        """Disconnect the user's Spotify account."""
+        user = request.user
+
+        # Clear Spotify tokens
+        user.spotify_access_token = None
+        user.spotify_refresh_token = None
+        user.save()
+
+        return Response({
+            "message": "Spotify account disconnected successfully"
+        }, status=status.HTTP_200_OK)

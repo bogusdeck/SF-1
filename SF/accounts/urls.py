@@ -10,5 +10,8 @@ urlpatterns = [
     # API Views
     path('api/accounts/register/', views.RegisterView.as_view(), name='api-register'),
     path('api/accounts/login/', views.LoginView.as_view(), name='api-login'),
-    path('api/acounts/logout/', views.LogoutView.as_view(), name='api-logout'),
+    path('api/accounts/logout/', views.LogoutView.as_view(), name='api-logout'),
+    path('api/accounts/profile/', views.ProfileView.as_view(), name='api-profile'),
+    path('api/accounts/connect-spotify/', views.SpotifyConnectView.as_view(), name='api-connect-spotify'),
+    path('api/accounts/disconnect-spotify/', views.SpotifyDisconnectView.as_view(), name='api-disconnect-spotify'),
 ]
