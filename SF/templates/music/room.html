@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Game Room{% endblock %}
+{% block title %}SyncUP Room{% endblock %}
 
 {% block content %}
 <div class="container py-4" ng-app="gameApp" ng-controller="RoomController" ng-init="init('{{ game.room_id }}', '{{ csrf_token }}')">
@@ -9,7 +9,7 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
-                    <h1 class="mb-0">Game Room</h1>
+                    <h1 class="mb-0">SyncUP Room</h1>
                     <p class="text-muted mb-0">Room ID: #{{ game.room_id }}</p>
                 </div>
                 <div class="badge bg-primary fs-6">
@@ -24,7 +24,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Players</h5>
+                    <h5 class="card-title mb-0">Members</h4>
                     <button ng-click="refreshPlayerList()" class="btn btn-sm btn-secondary">Refresh</button>
                 </div>
                 <div class="card-body">

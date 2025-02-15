@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Game Platform{% endblock %}</title>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>{% block title %}SyncUp{% endblock %}</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +20,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'game_lobby' %}">Game Platform</a>
+            <a class="navbar-brand" href="{% url 'music_lobby' %}">SyncUP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,21 +28,12 @@
                 <ul class="navbar-nav me-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'game_lobby' %}">Game</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'chat' %}">Chat</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'friends' %}">Friends</a>
+                            <a class="nav-link" href="{% url 'music_lobby' %}">Syncup</a>
                         </li>
                     {% endif %}
                 </ul>
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>
@@ -68,8 +60,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>Game Platform</h5>
-                    <p>Join the adventure, make friends, and conquer challenges together!</p>
+                    <h5>SynCUP</h5>
+                    <p>Listen Your Faviourite songs with your friend online.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <h5>Connect With Us</h5>

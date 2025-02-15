@@ -1,92 +1,94 @@
-from django.db import models
-from django.contrib.auth import get_user_model
+from django.shortcuts import render, get_object_or_404, redirect
+from rest_framework import status, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from django.middleware.csrf import get_token
+from django.http import JsonResponse
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.authentication import SessionAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from .models import MusicRoom
 
-User = get_user_model()
+@login_required
+def music_lobby(request):
+    return render(request, 'music/lobby.html')
 
-class MusicRoom(models.Model):
-    """
-    Represents a music room where users can join and listen to music together.
-    """
-    name = models.CharField(max_length=255, unique=True)  # Unique name for the room
-    host = models.ForeignKey(User, on_delete=models.CASCADE, related_name='hosted_music_rooms')  # Room creator
-    spotify_playlist_id = models.CharField(max_length=255)  # Spotify playlist ID
-    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp when the room was created
-    status = models.CharField(
-        max_length=20,
-        choices=[
-            ('waiting', 'Waiting'),  # Room is waiting for users to join
-            ('active', 'Active'),    # Room is active and playing music
-            ('ended', 'Ended')       # Room has ended
-        ],
-        default='waiting'
-    )
+@login_required
+def music_room(request, room_id):
+    room = get_object_or_404(MusicRoom, room_id=room_id)
+    context = {
+        'room': room,
+        'csrf_token': get_token(request),
+    }
+    return render(request, 'music/room.html', context)
 
-    def __str__(self):
-        return f"MusicRoom: {self.name} (Host: {self.host.username})"
+class MusicRoomViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = MusicRoom.objects.all()
 
-    @property
-    def player_count(self):
-        """Returns the number of users in the room."""
-        return self.users_in_room.count()
+    def perform_create(self, serializer):
+        serializer.save(host=self.request.user)
 
-    def add_user(self, user):
-        """Adds a user to the room."""
-        UserInRoom.objects.create(user=user, room=self)
+    @action(detail=True, methods=['post'])
+    def join(self, request, pk=None):
+        room = self.get_object()
+        if request.user in room.listeners.all():
+            return Response({'message': 'Already in the room'}, status=status.HTTP_400_BAD_REQUEST)
+        room.listeners.add(request.user)
+        return Response({'message': 'Joined the room successfully'})
 
-    def remove_user(self, user):
-        """Removes a user from the room."""
-        UserInRoom.objects.filter(user=user, room=self).delete()
-        if self.player_count == 0:
-            self.status = 'ended'
-            self.save()
+    @action(detail=True, methods=['post'])
+    def leave(self, request, pk=None):
+        room = self.get_object()
+        if request.user not in room.listeners.all():
+            return Response({'message': 'Not in the room'}, status=status.HTTP_400_BAD_REQUEST)
+        room.listeners.remove(request.user)
+        return Response({'message': 'Left the room successfully'})
 
-    def start_room(self):
-        """Starts the room and changes its status to active."""
-        if self.host:
-            self.status = 'active'
-            self.save()
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication, JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def create_music_room(request):
+    try:
+        room = MusicRoom.objects.create(
+            host=request.user,
+            status='waiting'
+        )
+        room.listeners.add(request.user)
+        return Response({
+            'success': True,
+            'message': 'Music room created successfully',
+            'data': {
+                'room_id': room.room_id,
+                'host': request.user.username,
+                'listeners': [listener.username for listener in room.listeners.all()],
+            }
+        }, status=status.HTTP_201_CREATED)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    def end_room(self):
-        """Ends the room and changes its status to ended."""
-        self.status = 'ended'
-        self.save()
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication, JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def join_music_room(request):
+    room_id = request.data.get('room_id')
+    room = get_object_or_404(MusicRoom, room_id=room_id)
+    if request.user in room.listeners.all():
+        return Response({'message': 'Already in the room'}, status=status.HTTP_400_BAD_REQUEST)
+    room.listeners.add(request.user)
+    return Response({'message': 'Joined the room successfully'})
 
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication, JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def leave_music_room(request):
+    room_id = request.data.get('room_id')
+    room = get_object_or_404(MusicRoom, room_id=room_id)
+    if request.user not in room.listeners.all():
+        return Response({'message': 'Not in the room'}, status=status.HTTP_400_BAD_REQUEST)
+    room.listeners.remove(request.user)
+    return Response({'message': 'Left the room successfully'})
 
-class UserInRoom(models.Model):
-    """
-    Represents a user in a music room.
-    """
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='music_rooms_joined')  # User in the room
-    room = models.ForeignKey(MusicRoom, on_delete=models.CASCADE, related_name='users_in_room')  # Room the user is in
-    joined_at = models.DateTimeField(auto_now_add=True)  # Timestamp when the user joined the room
-
-    def __str__(self):
-        return f"{self.user.username} in {self.room.name}"
-
-    class Meta:
-        unique_together = ('user', 'room')  # Ensure a user can only join a room once
-
-
-class Friendship(models.Model):
-    """
-    Represents a friendship between two users.
-    """
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_friendships')  # User who sent the request
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_friendships')  # User who received the request
-    status = models.CharField(
-        max_length=20,
-        choices=[
-            ('pending', 'Pending'),  # Friendship request is pending
-            ('accepted', 'Accepted'),  # Friendship request is accepted
-            ('rejected', 'Rejected')  # Friendship request is rejected
-        ],
-        default='pending'
-    )
-    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp when the friendship was created
-
-    def __str__(self):
-        return f"Friendship: {self.sender.username} -> {self.receiver.username} ({self.status})"
-
-    class Meta:
-        unique_together = ('sender', 'receiver')  # Ensure unique friendships

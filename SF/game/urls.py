@@ -3,20 +3,12 @@ from . import views
 
 urlpatterns = [
     # Template Views
-    path('', views.music_lobby, name='music_lobby'),  # Updated to music lobby
-    path('room/<str:room_id>/', views.music_room, name='music_room'),  # Updated to music room
-    path('chat/', views.chat_view, name='chat'),  # Retained for chat functionality
-    path('friends/', views.friends_view, name='friends'),  # Retained for friends functionality
-    path('profile/', views.profile_view, name='profile'),  # Retained for profile functionality
+    path('music_lobby/', views.music_lobby, name='music_lobby'),  
+    path('room/<str:room_id>/', views.music_room, name='music_room'),  
 
     # API Views
-    path('api/host/', views.host_music_room, name='host-music-room'),  # Updated to host music room
-    path('api/join/', views.join_music_room, name='join-music-room'),  # Updated to join music room
-    path('api/rooms/available/', views.available_music_rooms, name='available-music-rooms'),  # Updated to list available music rooms
-
-    # Friends API (Retained)
-    path('api/friends/', views.FriendshipViewSet.as_view({'get': 'list', 'post': 'create'}), name='friend-list'),
-    path('api/friends/<int:pk>/accept/', views.FriendshipViewSet.as_view({'post': 'accept'}), name='friend-accept'),
+    path('api/host/', views.create_music_room, name='create_music_room'),  
+    path('api/join/', views.join_music_room, name='join-music-room'),  
 
     # Music Room API
     path('api/rooms/', views.MusicRoomViewSet.as_view({'get': 'list', 'post': 'create'}), name='music-room-list'),
