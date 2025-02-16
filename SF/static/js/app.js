@@ -1,5 +1,6 @@
 var app = angular.module('gameApp', []);
 
+// Configure AngularJS to use different symbols to avoid conflicts with Django templates
 app.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
@@ -12,18 +13,38 @@ app.filter('capitalize', function() {
     };
 });
 
+// Function to get CSRF token from cookies
+function getCSRFToken() {
+    let cookieValue = null;
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith('csrftoken=')) {
+            cookieValue = cookie.substring('csrftoken='.length, cookie.length);
+            break;
+        }
+    }
+    return cookieValue;
+}
+
+// Automatically add CSRF token to every HTTP request
+app.run(function($http) {
+    $http.defaults.headers.common['X-CSRFToken'] = getCSRFToken();
+});
+
+// Authentication Controller
 app.controller('AuthController', function($scope, $http, $window) {
     $scope.error = null;
 
     // Login function
     $scope.login = function() {
         $scope.error = null;
-        $http.post('/api/accounts/login/', {
+        $http.post('/accounts/api/login/', {
             email: $scope.email,
             password: $scope.password
         }).then(function(response) {
             // Redirect to game lobby on successful login
-            $window.location.href = '/game/';
+            $window.location.href = '/music_lobby/';
         }).catch(function(error) {
             $scope.error = error.data.error || 'An error occurred during login';
         });
@@ -32,20 +53,24 @@ app.controller('AuthController', function($scope, $http, $window) {
     // Signup function
     $scope.signup = function() {
         $scope.error = null;
-        
+
         // Validate passwords match
         if ($scope.password !== $scope.confirmPassword) {
             $scope.error = 'Passwords do not match';
             return;
         }
 
-        $http.post('/api/accounts/register/', {
+        $http.post('/accounts/api/register/', {
             email: $scope.email,
             username: $scope.username,
             name: $scope.name,
             dob: $scope.dob,
             password: $scope.password,
             confirm_password: $scope.confirmPassword
+        }, {
+            headers: {
+                'X-CSRFToken': getCSRFToken()
+            }
         }).then(function(response) {
             // Redirect to login page on successful registration
             $window.location.href = '/accounts/login/';

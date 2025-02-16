@@ -16,7 +16,7 @@ angular.module('gameApp').controller('LobbyController', function ($scope, $http,
 
         $http({
             method: 'POST',
-            url: '/game/api/host/',
+            url: '/api/host/',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken')
@@ -47,40 +47,35 @@ angular.module('gameApp').controller('LobbyController', function ($scope, $http,
         );
     };
 
-    $scope.joinGameById = function () {
-        console.log("joingamebyid working")
-        if (!$scope.gameId) {
+    $scope.joinRoomById = function () {
+        if (!$scope.roomId) {
                 $scope.error = 'please enter a valid Game ID';
                 return;
             }
 
         $scope.loading = true;
         $scope.error = null;
-        console.log("1")
         $http({
             method: 'POST',
-            url: '/game/api/join/',
+            url: '/api/join/',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken')
             },
-            data: { room_id: $scope.gameId },
+            data: { room_id: $scope.roomId },
             withCredentials: true
         }).then(
             function (response) {
                 $scope.loading = false;
-                console.log("2")
                 if (response.data.success) {
-                    console.log("success")
+                    console.log(response.data.data.room_url);
                     $window.location.href = response.data.data.room_url;
                 } else {
-                    console.log("error")
                     $scope.error = response.data.message || 'Failed to join game';
                 }
             },
             function (error) {
                 $scope.loading = false;
-                console.log("4")
                 console.error('Error joining game :', error);
                 if (error.status === 403) {
                     $scope.error = 'Authentication Error, Please make sure you are logged in';
@@ -101,7 +96,7 @@ angular.module('gameApp').controller('LobbyController', function ($scope, $http,
 
         $http({
             method: 'POST',
-            url: '/game/api/join/',
+            url: '/api/join/',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken')

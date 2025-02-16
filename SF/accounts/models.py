@@ -20,7 +20,7 @@ class CustomUser(AbstractUser):
     spotify_access_token = models.CharField(
         max_length=255,
         null=True,
-        blank=True,
+        # blank=True,
         verbose_name='Spotify Access Token'
     )  # Spotify access token for API integration
     spotify_refresh_token = models.CharField(

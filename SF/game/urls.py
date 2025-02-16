@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     # Template Views
     path('music_lobby/', views.music_lobby, name='music_lobby'),  
-    path('room/<str:room_id>/', views.music_room, name='music_room'),  
+    path('music_lobby/<int:room_id>', views.music_room, name='music_room'),  
 
     # API Views
     path('api/host/', views.create_music_room, name='create_music_room'),  

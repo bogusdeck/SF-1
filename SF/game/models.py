@@ -28,6 +28,7 @@ class MusicRoom(models.Model):
     spotify_playlist_id = models.CharField(max_length=255)  # Spotify playlist ID
     room_id = models.CharField(max_length=6, unique=True, default=generate_room_id)  # Unique room ID
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='waiting')  # Room status
+    listeners = models.ManyToManyField(User, related_name='joined_rooms', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)  # Timestamp when the room was created
     ended_at = models.DateTimeField(null=True, blank=True)  # Timestamp when the room ended
 
@@ -99,4 +100,4 @@ class Friendship(models.Model):
         return f"Friendship: {self.sender.username} -> {self.receiver.username} ({self.status})"
 
     class Meta:
-        unique_together = ('sender', 'receiver')  # Ensure unique friendships
+        unique_together = ('sender', 'receiver')  # Ensure unique friendships   
