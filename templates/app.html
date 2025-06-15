@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block title %}Music Sync App{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-900">Music Sync</h1>
+            <div class="flex items-center space-x-4">
+                <div id="connectionStatus" class="text-sm text-gray-500">
+                    <span class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span>
+                    Disconnected
+                </div>
+                <div id="roomInfo" class="text-sm text-gray-700 hidden">
+                    Room: <span id="roomName" class="font-medium"></span>
+                </div>
+                <button id="leaveRoomBtn" class="text-sm text-red-600 hover:text-red-800 hidden">
+                    Leave Room
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- Room View (initially hidden) -->
+        <div id="roomView" class="hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <!-- Left Column - Now Playing -->
+                <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
+                    <h2 class="text-xl font-semibold mb-4">Now Playing</h2>
+                    <div id="nowPlaying" class="text-center py-8">
+                        <div class="text-gray-500">No track selected</div>
+                    </div>
+                    
+                    <!-- Progress Bar -->
+                    <div class="mt-6">
+                        <div class="flex justify-between text-sm text-gray-500 mb-1">
+                            <span id="currentTime">0:00</span>
+                            <span id="duration">0:00</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div id="progressBar" class="bg-blue-600 h-2 rounded-full w-0"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Controls -->
+                    <div class="mt-6 flex justify-center items-center space-x-4">
+                        <button id="prevBtn" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button id="playPauseBtn" class="p-4 rounded-full bg-blue-600 text-white hover:bg-blue-700">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button id="nextBtn" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Volume -->
+                    <div class="mt-6 flex items-center">
+                        <i class="fas fa-volume-up text-gray-500 mr-2"></i>
+                        <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1" class="w-full">
+                    </div>
+                </div>
+                
+                <!-- Right Column - Chat and Queue -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Chat -->
+                    <div class="bg-white rounded-lg shadow p-6 h-96 flex flex-col">
+                        <h2 class="text-xl font-semibold mb-4">Chat</h2>
+                        <div id="chatMessages" class="flex-grow overflow-y-auto mb-4 space-y-2">
+                            <!-- Messages will be added here -->
+                        </div>
+                        <div class="flex">
+                            <input type="text" id="chatInput" placeholder="Type a message..." class="flex-grow border rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <button id="sendMessageBtn" class="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Queue -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-semibold">Queue</h2>
+                            <button id="addToQueueBtn" class="text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+                                Add to Queue
+                            </button>
+                        </div>
+                        <div id="queueList" class="space-y-2">
+                            <!-- Queue items will be added here -->
+                            <div class="text-gray-500 text-center py-4">The queue is empty</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Join Room View (initially shown) -->
+        <div id="joinRoomView" class="max-w-md mx-auto bg-white rounded-lg shadow p-8">
+            <h2 class="text-2xl font-bold text-center mb-8">Join a Room</h2>
+            <div class="space-y-4">
+                <div>
+                    <label for="roomId" class="block text-sm font-medium text-gray-700 mb-1">Room ID</label>
+                    <input type="text" id="roomId" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter room ID">
+                </div>
+                <div>
+                    <label for="displayName" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                    <input type="text" id="displayName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your name">
+                </div>
+                <button id="joinRoomBtn" class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Join Room
+                </button>
+                <div class="text-center">
+                    <button id="createRoomBtn" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                        Or create a new room
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-white shadow-inner py-4">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            &copy; 2025 Music Sync. All rights reserved.
+        </div>
+    </footer>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check authentication status
+        async function checkAuth() {
+            try {
+                const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+                if (!token) {
+                    // If no token, redirect to login with a return URL
+                    window.location.href = '/login?redirect=' + encodeURIComponent('/app');
+                    return false;
+                }
+                
+                // Verify token with backend
+                const response = await fetch('/api/auth/me', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    // If token is invalid, redirect to login
+                    window.location.href = '/login?redirect=' + encodeURIComponent('/app');
+                    return false;
+                }
+                
+                return true;
+                
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                window.location.href = '/login?redirect=' + encodeURIComponent('/app');
+                return false;
+            }
+        }
+        
+        // Initialize the app
+        async function initApp() {
+            const isAuthenticated = await checkAuth();
+            if (!isAuthenticated) return;
+            
+            // Initialize your app here
+            console.log('User is authenticated. Initializing app...');
+            
+            // Example: Set up event listeners for the app
+            document.getElementById('joinRoomBtn')?.addEventListener('click', joinRoom);
+            document.getElementById('createRoomBtn')?.addEventListener('click', createRoom);
+            document.getElementById('sendMessageBtn')?.addEventListener('click', sendMessage);
+            document.getElementById('leaveRoomBtn')?.addEventListener('click', leaveRoom);
+            document.getElementById('addToQueueBtn')?.addEventListener('click', addToQueue);
+            
+            // Add keyboard event for sending messages on Enter
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+        }
+        
+        // Example functions (implement your actual functionality)
+        function joinRoom() {
+            const roomId = document.getElementById('roomId')?.value;
+            const displayName = document.getElementById('displayName')?.value;
+            
+            if (!roomId || !displayName) {
+                alert('Please enter both room ID and your name');
+                return;
+            }
+            
+            // Show room view and hide join view
+            document.getElementById('joinRoomView').classList.add('hidden');
+            document.getElementById('roomView').classList.remove('hidden');
+            document.getElementById('roomName').textContent = roomId;
+            document.getElementById('roomInfo').classList.remove('hidden');
+            document.getElementById('leaveRoomBtn').classList.remove('hidden');
+            
+            // Update connection status
+            const statusEl = document.getElementById('connectionStatus');
+            if (statusEl) {
+                statusEl.innerHTML = '<span class="inline-block w-2 h-2 rounded-full bg-green-500 mr-1"></span> Connected';
+            }
+            
+            console.log(`Joining room: ${roomId} as ${displayName}`);
+        }
+        
+        function createRoom() {
+            // Generate a random room ID
+            const roomId = Math.random().toString(36).substring(2, 8).toUpperCase();
+            document.getElementById('roomId').value = roomId;
+            
+            // Auto-focus on display name input
+            const displayNameInput = document.getElementById('displayName');
+            if (displayNameInput) {
+                displayNameInput.focus();
+            }
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input?.value.trim();
+            
+            if (!message) return;
+            
+            const messagesContainer = document.getElementById('chatMessages');
+            if (messagesContainer) {
+                const messageEl = document.createElement('div');
+                messageEl.className = 'bg-gray-100 p-3 rounded-lg';
+                messageEl.textContent = message;
+                messagesContainer.appendChild(messageEl);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+            
+            // Clear input
+            if (input) {
+                input.value = '';
+            }
+        }
+        
+        function leaveRoom() {
+            // Hide room view and show join view
+            document.getElementById('joinRoomView').classList.remove('hidden');
+            document.getElementById('roomView').classList.add('hidden');
+            document.getElementById('roomInfo').classList.add('hidden');
+            document.getElementById('leaveRoomBtn').classList.add('hidden');
+            
+            // Update connection status
+            const statusEl = document.getElementById('connectionStatus');
+            if (statusEl) {
+                statusEl.innerHTML = '<span class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span> Disconnected';
+            }
+            
+            console.log('Left the room');
+        }
+        
+        function addToQueue() {
+            const queueList = document.getElementById('queueList');
+            if (!queueList) return;
+            
+            // Example: Add a sample track to the queue
+            const track = {
+                title: 'Sample Track',
+                artist: 'Sample Artist',
+                duration: '3:45'
+            };
+            
+            // Remove "queue is empty" message if it exists
+            if (queueList.querySelector('.text-gray-500')) {
+                queueList.innerHTML = '';
+            }
+            
+            const trackEl = document.createElement('div');
+            trackEl.className = 'flex items-center justify-between p-2 hover:bg-gray-50 rounded';
+            trackEl.innerHTML = `
+                <div>
+                    <div class="font-medium">${track.title}</div>
+                    <div class="text-sm text-gray-500">${track.artist}</div>
+                </div>
+                <div class="text-sm text-gray-500">${track.duration}</div>
+            `;
+            
+            queueList.appendChild(trackEl);
+        }
+        
+        // Initialize the app
+        initApp();
+    });
+</script>
+{% endblock %}

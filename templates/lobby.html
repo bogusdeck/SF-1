@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block title %}Music Lobby - Music Sync{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-indigo-900 to-purple-900 text-white">
+    <!-- Navigation -->
+    <nav class="bg-indigo-900 bg-opacity-50 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-white text-xl font-bold">Music Sync</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span id="username-display" class="text-white"></span>
+                    <button id="logout-btn" class="text-white hover:text-indigo-200 px-3 py-2 rounded-md text-sm font-medium">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
+                <span class="block">Welcome to</span>
+                <span class="block text-indigo-200">Music Sync Lobby</span>
+            </h1>
+            <p class="mt-3 max-w-md mx-auto text-base text-indigo-100 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                Create a new room or join an existing one to start syncing music with friends.
+            </p>
+        </div>
+
+        <div class="mt-10 flex flex-col sm:flex-row justify-center gap-8">
+            <!-- Create Room Card -->
+            <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 w-full max-w-md">
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-indigo-500 text-white">
+                        <i class="fas fa-plus text-2xl"></i>
+                    </div>
+                    <h3 class="mt-6 text-2xl font-medium text-white">Create a Room</h3>
+                    <p class="mt-2 text-sm text-indigo-100">
+                        Start a new music session and invite friends to join you.
+                    </p>
+                    <div class="mt-6">
+                        <button id="create-room-btn" class="w-full flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Create Room
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Join Room Card -->
+            <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 w-full max-w-md">
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-purple-500 text-white">
+                        <i class="fas fa-users text-2xl"></i>
+                    </div>
+                    <h3 class="mt-6 text-2xl font-medium text-white">Join a Room</h3>
+                    <p class="mt-2 text-sm text-indigo-100">
+                        Enter a room code to join an existing music session.
+                    </p>
+                    <div class="mt-6">
+                        <div class="rounded-md shadow-sm -space-y-px">
+                            <div>
+                                <label for="room-code" class="sr-only">Room Code</label>
+                                <input id="room-code" name="room-code" type="text" required 
+                                       class="appearance-none rounded-md relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+                                       placeholder="Enter room code">
+                            </div>
+                        </div>
+                        <button id="join-room-btn" class="mt-4 w-full flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                            Join Room
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Rooms Section -->
+        <div class="mt-16 max-w-3xl mx-auto">
+            <h2 class="text-xl font-medium text-white mb-4">Your Recent Rooms</h2>
+            <div id="recent-rooms" class="space-y-3">
+                <!-- Recent rooms will be populated by JavaScript -->
+                <div class="text-center py-8 text-indigo-200">
+                    <p>No recent rooms found. Create or join a room to get started!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if user is authenticated
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+        
+        if (!token) {
+            // Redirect to login if not authenticated
+            window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+            return;
+        }
+
+        // Set username in the header
+        fetch('/api/auth/me', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Not authenticated');
+            }
+            return response.json();
+        })
+        .then(user => {
+            document.getElementById('username-display').textContent = user.username;
+        })
+        .catch(error => {
+            console.error('Authentication error:', error);
+            // Clear invalid token
+            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
+            window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+        });
+
+        // Logout button handler
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
+            window.location.href = '/';
+        });
+
+        // Create room button handler
+        document.getElementById('create-room-btn').addEventListener('click', function() {
+            // TODO: Implement create room logic
+            alert('Create room functionality coming soon!');
+        });
+
+        // Join room button handler
+        document.getElementById('join-room-btn').addEventListener('click', function() {
+            const roomCode = document.getElementById('room-code').value.trim();
+            if (!roomCode) {
+                alert('Please enter a room code');
+                return;
+            }
+            // TODO: Implement join room logic
+            alert(`Joining room: ${roomCode}`);
+        });
+
+        // Handle Enter key in room code input
+        document.getElementById('room-code').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('join-room-btn').click();
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}
