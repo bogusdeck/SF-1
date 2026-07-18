@@ -17,76 +17,101 @@
             </p>
         </div>
         
-        {% if error %}
-        <div id="errorAlert" class="bg-red-50 border-l-4 border-red-400 p-4 mb-6 rounded">
+        <!-- Error Alert -->
+        <div id="errorAlert" class="hidden bg-red-50 border-l-4 border-red-400 p-4 mb-6 rounded">
             <div class="flex">
                 <div class="flex-shrink-0">
                     <i class="fas fa-exclamation-circle text-red-400"></i>
                 </div>
                 <div class="ml-3">
-                    <p class="text-sm text-red-700">{{ error }}</p>
+                    <p id="errorMessage" class="text-sm text-red-700"></p>
                 </div>
             </div>
         </div>
-        {% else %}
-        <div id="errorAlert" class="hidden"></div>
-        {% endif %}
+        
+        <!-- Success Alert (for redirect messages) -->
+        <div id="successAlert" class="{% if not request.query_params.get('success') %}hidden{% endif %} bg-green-50 border-l-4 border-green-400 p-4 mb-6 rounded">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-check-circle text-green-400"></i>
+                </div>
+                <div class="ml-3">
+                    <p id="successMessage" class="text-sm text-green-700">
+                        {% if request.query_params.get('success') %}
+                            {{ request.query_params.get('success').replace('+', ' ') }}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
         
         <form id="loginForm" class="mt-8 space-y-6" novalidate>
-            {% if redirect %}
-            <input type="hidden" name="redirect" value="{{ redirect }}">
-            {% endif %}
+            <input type="hidden" id="redirect" name="redirect" value="{{ request.query_params.get('redirect', '') }}">
+            
             <div class="space-y-4">
-                <div class="form-group">
-                    <label for="username" class="form-label">Username or Email</label>
-                    <div class="relative">
+                <!-- Username/Email Field -->
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">
+                        Username or Email
+                    </label>
+                    <div class="relative rounded-md shadow-sm">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-user text-gray-400"></i>
                         </div>
                         <input id="username" name="username" type="text" required
-                            class="form-control pl-10"
+                            class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-2 sm:text-sm border border-gray-300 rounded-md"
                             placeholder="Enter your username or email"
-                            autocomplete="username">
+                            autocomplete="username"
+                            autofocus>
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <div class="flex items-center justify-between">
-                        <label for="password" class="form-label">Password</label>
-                        <a href="#" class="text-sm text-primary hover:text-primary-dark">
+                <!-- Password Field -->
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <label for="password" class="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+                        <a href="#" class="text-xs text-indigo-600 hover:text-indigo-500">
                             Forgot password?
                         </a>
                     </div>
-                    <div class="relative">
+                    <div class="relative rounded-md shadow-sm">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-lock text-gray-400"></i>
                         </div>
                         <input id="password" name="password" type="password" required
-                            class="form-control pl-10"
+                            class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-2 sm:text-sm border border-gray-300 rounded-md"
                             placeholder="Enter your password"
                             autocomplete="current-password">
                     </div>
                 </div>
                 
+                <!-- Remember Me & Sign Up -->
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                        <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+                        <input id="remember-me" name="remember-me" type="checkbox" 
+                               class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">
                             Remember me
                         </label>
                     </div>
                     <div class="text-sm">
-                        <a href="/signup{% if redirect %}?redirect={{ redirect|urlencode }}{% endif %}" class="font-medium text-indigo-600 hover:text-indigo-500">
-                            Don't have an account? Sign up
+                        <a href="{{ '/signup' + ('?redirect=' + request.query_params.redirect if request.query_params.get('redirect') else '') }}" 
+                           class="font-medium text-indigo-600 hover:text-indigo-500">
+                            Create an account
                         </a>
                     </div>
                 </div>
             </div>
 
+            <!-- Submit Button -->
             <div>
-                <button type="submit"
-                    class="btn btn-primary w-full py-2 px-4 text-base font-medium">
-                    <i class="fas fa-sign-in-alt mr-2"></i>
+                <button type="submit" id="submitButton"
+                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
+                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <i class="fas fa-sign-in-alt text-indigo-300 group-hover:text-indigo-200"></i>
+                    </span>
                     Sign in
                 </button>
             </div>
@@ -162,64 +187,200 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Signing in...';
             
             try {
-                const formData = new FormData(form);
-                const redirect = new URLSearchParams(window.location.search).get('redirect');
-                
-                const response = await fetch('/api/auth/login' + (redirect ? `?redirect=${encodeURIComponent(redirect)}` : ''), {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    // Store the token in localStorage or sessionStorage
-                    if (rememberMe) {
-                        localStorage.setItem('token', data.access_token);
-                    } else {
-                        sessionStorage.setItem('token', data.access_token);
+                try {
+                    // Build the login URL with redirect if provided
+                    let loginUrl = '/api/auth/login';
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirect = urlParams.get('redirect');
+                    
+                    // Build URL with redirect parameter if it exists
+                    if (redirect) {
+                        loginUrl += `?redirect=${encodeURIComponent(redirect)}`;
                     }
                     
-                    // Redirect to the specified redirect URL, or default to /lobby
-                    const redirectTo = data.redirect || '/lobby';
-                    window.location.href = redirectTo;
-                } else {
-                    showError(data.detail || 'Invalid username or password');
-                    passwordInput.value = '';
-                    passwordInput.focus();
+                    // Show loading state
+                    showLoading(true);
+                    
+                    // Create form data for the request
+                    const formData = new URLSearchParams();
+                    formData.append('username', username);
+                    formData.append('password', password);
+                    
+                    const response = await fetch(loginUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'Accept': 'application/json'
+                        },
+                        body: formData.toString()
+                    });
+                    
+                    const data = await response.json().catch(() => ({}));
+                    
+                    if (response.ok) {
+                        // Store the token based on remember me setting
+                        const token = data.access_token;
+                        if (!token) {
+                            throw new Error('No access token received');
+                        }
+                        
+                        if (rememberMe) {
+                            localStorage.setItem('access_token', token);
+                        } else {
+                            sessionStorage.setItem('access_token', token);
+                        }
+                        
+                        // Show success message
+                        showSuccess('Login successful! Redirecting...');
+                        
+                        // Redirect to the specified URL or home page after a short delay
+                        setTimeout(() => {
+                            window.location.href = data.redirect || '/';
+                        }, 1000);
+                    } else {
+                        // Handle error response
+                        let errorMessage = 'Login failed. Please check your credentials.';
+                        
+                        // Extract error details from response
+                        if (data.detail) {
+                            if (typeof data.detail === 'string') {
+                                errorMessage = data.detail;
+                            } else if (data.detail.error) {
+                                errorMessage = data.detail.error;
+                            } else if (data.detail.message) {
+                                errorMessage = data.detail.message;
+                            }
+                        } else if (response.status === 401) {
+                            errorMessage = 'Invalid username or password';
+                        } else if (response.status >= 500) {
+                            errorMessage = 'Server error. Please try again later.';
+                        }
+                        
+                        // Show error to user
+                        showError(errorMessage);
+                        
+                        // Focus back on the appropriate field
+                        if (data.detail && data.detail.field === 'username') {
+                            usernameInput.focus();
+                        } else {
+                            passwordInput.focus();
+                        }
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    showError('An error occurred. Please try again.');
+                } finally {
+                    // Reset button state
+                    showLoading(false);
                 }
             } catch (error) {
                 console.error('Login error:', error);
                 showError('An error occurred. Please try again.');
-                usernameInput.focus();
             } finally {
                 // Reset button state
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
+                showLoading(false);
             }
         });
-        
+
         function showError(message) {
-            errorAlert.textContent = message;
-            errorAlert.classList.remove('hidden');
+            const errorAlert = document.getElementById('errorAlert');
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (errorAlert && errorMessage) {
+                errorMessage.textContent = message;
+                errorAlert.classList.remove('hidden');
+
+                // Hide any success message when showing an error
+                const successAlert = document.getElementById('successAlert');
+                if (successAlert) {
+                    successAlert.classList.add('hidden');
+                }
+
+                // Scroll to error message
+                errorAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function showSuccess(message) {
+            const successAlert = document.getElementById('successAlert');
+            const successMessage = document.getElementById('successMessage');
             
-            // Auto-hide error after 5 seconds
-            setTimeout(() => {
+            if (successAlert && successMessage) {
+                successMessage.textContent = message;
+                successAlert.classList.remove('hidden');
+                
+                // Hide any error message when showing success
+                hideError();
+                
+                // Scroll to success message
+                successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    successAlert.classList.add('hidden');
+                }, 5000);
+            }
+        }
+
+        function hideError() {
+            const errorAlert = document.getElementById('errorAlert');
+            if (errorAlert) {
                 errorAlert.classList.add('hidden');
-            }, 5000);
+            }
+        }
+
+        function showLoading(show = true) {
+            const submitBtn = document.getElementById('submitButton');
+            if (!submitBtn) return;
+
+            if (show) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <i class="fas fa-spinner fa-spin text-indigo-300"></i>
+                    </span>
+                    Signing in...
+                `;
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `
+                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <i class="fas fa-sign-in-alt text-indigo-300 group-hover:text-indigo-200"></i>
+                    </span>
+                    Sign in
+                `;
+            }
+        }
+
+        // Check for messages in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Show success message if present
+        const successMessage = urlParams.get('success');
+        if (successMessage) {
+            const successAlert = document.getElementById('successAlert');
+            const successMessageEl = document.getElementById('successMessage');
+            
+            if (successAlert && successMessageEl) {
+                successMessageEl.textContent = decodeURIComponent(successMessage.replace(/\+/g, ' '));
+                successAlert.classList.remove('hidden');
+                
+                // Auto-hide success message after 5 seconds
+                setTimeout(() => {
+                    successAlert.classList.add('hidden');
+                }, 10000);
+            }
         }
         
-        // Check for error messages in URL
-        const urlParams = new URLSearchParams(window.location.search);
+        // Show error message if present
         const error = urlParams.get('error');
         if (error) {
             showError(decodeURIComponent(error));
+            
+            // Auto-hide error message after 5 seconds
+            setTimeout(() => {
+                hideError();
+            }, 10000);
         }
         
         // Handle Enter key to submit form

@@ -1,8 +1,9 @@
 from sqlalchemy.orm import Session
+from typing import Optional
+
 from ..models.user import User
 from ..schemas.user import UserCreate, UserUpdate
-from ..auth.security import get_password_hash
-from typing import Optional
+from ..auth.password_utils import get_password_hash, verify_password
 
 def get_user(db: Session, user_id: int) -> Optional[User]:
     """Get a user by ID."""
@@ -61,11 +62,52 @@ def delete_user(db: Session, user_id: int) -> bool:
     db.commit()
     return True
 
-def authenticate_user(db: Session, username: str, password: str) -> Optional[User]:
-    """Authenticate a user."""
-    user = get_user_by_username(db, username)
+def authenticate_user(db: Session, username: str, password: str):
+    """
+    Authenticate a user with the given username and password.
+    
+    Args:
+        db: Database session
+        username: The username to authenticate
+        password: The plain text password to verify
+        
+    Returns:
+        User: The authenticated user if successful, None otherwise
+    """
+    print(f"\n=== Authentication Attempt ===")
+    print(f"Username/Email: {username}")
+    print(f"Password provided: {'*' * len(password)}")
+    
+    # First try to find user by username
+    user = get_user_by_username(db, username=username)
+    user_source = "username"
+    
+    # If not found by username, try by email
+    if not user and "@" in username:
+        print(f"User not found by username, trying email: {username}")
+        user = get_user_by_email(db, email=username)
+        user_source = "email"
+    
     if not user:
+        print(f"❌ User not found by {user_source}: {username}")
         return None
-    if not verify_password(password, user.hashed_password):
+    
+    print(f"✅ Found user by {user_source}")
+    print(f"User ID: {user.id}")
+    print(f"Stored hash: {user.hashed_password[:15]}...")
+    print("Verifying password...")
+    
+    try:
+        # Verify the password using the imported verify_password function
+        if not verify_password(password, user.hashed_password):
+            print("❌ Password verification failed")
+            return None
+        
+        print("✅ Password verified successfully")
+        return user
+        
+    except Exception as e:
+        print(f"❌ Error during password verification: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return None
-    return user
