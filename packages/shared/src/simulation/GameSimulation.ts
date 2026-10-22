@@ -1,4 +1,4 @@
-import type { CharacterData, CharacterFrame, Hitbox, Hurtbox } from '../types/character';
+import type { CharacterData } from '../types/character';
 import type {
   GameSimulationState,
   InputState,
@@ -8,13 +8,8 @@ import type {
 } from '../types/simulation';
 import { GRAVITY } from '../index';
 import { InputBuffer } from '../input/InputBuffer';
-
-interface WorldBox {
-  minX: number;
-  maxX: number;
-  minY: number;
-  maxY: number;
-}
+import { updateMeleeCombat } from './combat';
+import { createProjectile, updateProjectiles } from './projectiles';
 
 export class GameSimulation {
   private state: GameSimulationState;
@@ -75,6 +70,17 @@ export class GameSimulation {
     return this.state.players[id];
   }
 
+  public removePlayer(id: string): boolean {
+    if (!this.state.players[id]) return false;
+
+    delete this.state.players[id];
+    this.inputBuffers.delete(id);
+    this.state.projectiles = this.state.projectiles.filter(
+      (projectile) => projectile.ownerId !== id
+    );
+    return true;
+  }
+
   public getState(): GameSimulationState {
     return this.state;
   }
@@ -112,10 +118,10 @@ export class GameSimulation {
     }
 
     // 2. Process Projectile Movement & Collisions
-    this.updateProjectiles();
+    updateProjectiles(this.state);
 
     // 3. Melee Hit Detection (Attacker Hitbox vs Victim Hurtbox)
-    this.checkMeleeCollisions();
+    updateMeleeCombat(this.state, this.characterConfigs);
   }
 
   private updatePlayer(
@@ -520,141 +526,6 @@ export class GameSimulation {
     }
   }
 
-  // -------------------------------------------------------------
-  // Melee Collision & Combat Resolution
-  // -------------------------------------------------------------
-  private checkMeleeCollisions(): void {
-    const players = Object.values(this.state.players);
-
-    for (let i = 0; i < players.length; i++) {
-      const attacker = players[i];
-      if (attacker.isDead) continue;
-
-      const attChar = this.characterConfigs.get(attacker.character.toLowerCase());
-      if (!attChar) continue;
-
-      const attFrame = attChar.frames[attacker.frameId];
-      if (!attFrame || !attFrame.itr || attFrame.itr.length === 0) continue;
-
-      const attackId = `${attacker.id}_${attacker.frameId}_${attacker.frameTick}`;
-
-      for (let j = 0; j < players.length; j++) {
-        if (i === j) continue;
-        const victim = players[j];
-        if (victim.isDead || victim.invincibleTicks > 0) continue;
-
-        // Skip if this specific attack swing already hit this victim
-        if (victim.lastHitByAttackId === attackId) continue;
-
-        // 2.5D Depth Lane Check (|z_att - z_vic| <= 16)
-        if (Math.abs(attacker.z - victim.z) > 16) continue;
-
-        const vicChar = this.characterConfigs.get(victim.character.toLowerCase());
-        if (!vicChar) continue;
-
-        const vicFrame = vicChar.frames[victim.frameId];
-        if (!vicFrame || !vicFrame.bdy || vicFrame.bdy.length === 0) continue;
-
-        // Check each hitbox against victim hurtboxes
-        let hitConnected = false;
-        let matchedHitbox: Hitbox | null = null;
-
-        for (const hit of attFrame.itr) {
-          const hitBoxWorld = this.toWorldBox(attacker, attFrame, hit);
-
-          for (const hurt of vicFrame.bdy) {
-            const hurtBoxWorld = this.toWorldBox(victim, vicFrame, hurt);
-
-            if (this.boxesIntersect(hitBoxWorld, hurtBoxWorld)) {
-              hitConnected = true;
-              matchedHitbox = hit;
-              break;
-            }
-          }
-          if (hitConnected) break;
-        }
-
-        if (hitConnected && matchedHitbox) {
-          victim.lastHitByAttackId = attackId;
-          this.applyHit(attacker, victim, matchedHitbox);
-        }
-      }
-    }
-  }
-
-  private applyHit(
-    attacker: PlayerSimulationState,
-    victim: PlayerSimulationState,
-    hit: Hitbox
-  ): void {
-    const isDefending = victim.frameId === 110 || victim.frameId === 111;
-
-    if (isDefending) {
-      // Blocked hit: 75% damage reduction
-      const damage = Math.max(1, Math.round(hit.damage * 0.25));
-      victim.hp = Math.max(0, victim.hp - damage);
-      victim.vx = attacker.facing * Math.round(hit.knockbackX * 0.35);
-      victim.frameId = 111; // Defend recoil frame
-      victim.frameTick = 0;
-    } else {
-      // Unblocked hit
-      victim.hp = Math.max(0, victim.hp - hit.damage);
-      victim.fallPoints += hit.fall || 20;
-
-      if (victim.hp <= 0) {
-        // Knockout
-        victim.isDead = true;
-        this.transitionToFrame(victim, 180);
-        victim.vy = 10;
-        victim.vx = -attacker.facing * 7;
-        victim.isGrounded = false;
-      } else if (victim.fallPoints >= 50 || (hit.fall && hit.fall >= 40)) {
-        // Knockdown!
-        this.transitionToFrame(victim, 180);
-        victim.vy = 9;
-        victim.vx = -attacker.facing * 6;
-        victim.isGrounded = false;
-        victim.fallPoints = 0;
-      } else {
-        // Light Flinch / Injured state
-        this.transitionToFrame(victim, 220);
-        victim.vx = attacker.facing * Math.min(8, hit.knockbackX || 4);
-      }
-    }
-  }
-
-  private toWorldBox(
-    player: PlayerSimulationState,
-    frame: CharacterFrame,
-    box: Hurtbox | Hitbox
-  ): WorldBox {
-    const cx = frame.centerx ?? 39;
-    const cy = frame.centery ?? 79;
-
-    let minX: number;
-    let maxX: number;
-
-    if (player.facing === 1) {
-      minX = player.x - cx + box.x;
-      maxX = minX + box.w;
-    } else {
-      minX = player.x + cx - (box.x + box.w);
-      maxX = minX + box.w;
-    }
-
-    const minY = player.y + (cy - (box.y + box.h));
-    const maxY = player.y + (cy - box.y);
-
-    return { minX, maxX, minY, maxY };
-  }
-
-  private boxesIntersect(a: WorldBox, b: WorldBox): boolean {
-    return a.minX < b.maxX && a.maxX > b.minX && a.minY < b.maxY && a.maxY > b.minY;
-  }
-
-  // -------------------------------------------------------------
-  // Projectiles (Energy Balls & Collisions)
-  // -------------------------------------------------------------
   public spawnProjectile(
     ownerId: string,
     x: number,
@@ -663,90 +534,8 @@ export class GameSimulation {
     vx: number,
     facing: 1 | -1,
     damage = 35,
-    fall = 45
+    _fall = 45
   ): ProjectileSimulationState {
-    const proj: ProjectileSimulationState = {
-      id: `proj_${this.state.tick}_${ownerId}`,
-      ownerId,
-      x,
-      y,
-      z,
-      vx,
-      vy: 0,
-      vz: 0,
-      facing,
-      frameId: 0,
-      frameTick: 0,
-      damage,
-      ttl: 60, // 2 seconds
-    };
-
-    this.state.projectiles.push(proj);
-    return proj;
-  }
-
-  private updateProjectiles(): void {
-    const alive: ProjectileSimulationState[] = [];
-
-    for (let i = 0; i < this.state.projectiles.length; i++) {
-      const p = this.state.projectiles[i];
-      p.x += p.vx;
-      p.ttl--;
-
-      // Arena boundary removal
-      if (p.x < 30 || p.x > 770 || p.ttl <= 0) {
-        continue;
-      }
-
-      // 1. Check Projectile vs Projectile Clash / Cancellation
-      let clashing = false;
-      for (let j = 0; j < this.state.projectiles.length; j++) {
-        if (i === j) continue;
-        const other = this.state.projectiles[j];
-        if (p.ownerId !== other.ownerId) {
-          const dx = Math.abs(p.x - other.x);
-          const dz = Math.abs(p.z - other.z);
-          const dy = Math.abs(p.y - other.y);
-
-          if (dx < 28 && dz < 16 && dy < 25) {
-            clashing = true;
-            other.ttl = 0; // Destroy other projectile
-            break;
-          }
-        }
-      }
-
-      if (clashing) {
-        continue; // Destroy current projectile as well
-      }
-
-      // 2. Check Projectile vs Player Hit Detection
-      let hitPlayer = false;
-      for (const player of Object.values(this.state.players)) {
-        if (player.id === p.ownerId || player.isDead || player.invincibleTicks > 0) continue;
-
-        const dz = Math.abs(p.z - player.z);
-        const dx = Math.abs(p.x - player.x);
-        const dy = Math.abs(p.y - (player.y + 35));
-
-        if (dx < 26 && dz <= 16 && dy < 30) {
-          hitPlayer = true;
-
-          // Apply damage & knockdown
-          player.hp = Math.max(0, player.hp - p.damage);
-          this.transitionToFrame(player, 180);
-          player.vy = 8;
-          player.vx = -p.facing * 5;
-          player.isGrounded = false;
-          break;
-        }
-      }
-
-      if (!hitPlayer) {
-        alive.push(p);
-      }
-    }
-
-    this.state.projectiles = alive;
+    return createProjectile(this.state, ownerId, x, y, z, vx, facing, damage);
   }
 }

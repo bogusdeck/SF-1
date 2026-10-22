@@ -45,6 +45,7 @@ export class NetworkProjectileState extends Schema {
 export class NetworkRoomState extends Schema {
   @type('string') roomCode: string = '';
   @type('string') phase: string = 'lobby'; // 'lobby' | 'countdown' | 'battle' | 'gameover'
+  @type('string') winnerId: string = '';
   @type('number') tick: number = 0;
   @type('number') countdown: number = 0;
 

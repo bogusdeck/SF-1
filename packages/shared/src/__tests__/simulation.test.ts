@@ -34,6 +34,16 @@ describe('GameSimulation Determinism & 2.5D Mechanics', () => {
     expect(player.mp).toBe(500);
   });
 
+  it('should remove a player, their input buffer, and owned projectiles', () => {
+    sim.spawnProjectile('p1', 420, 35, 360, 11, 1);
+
+    expect(sim.removePlayer('p1')).toBe(true);
+    expect(sim.getPlayer('p1')).toBeUndefined();
+    expect(sim.getInputBuffer('p1')).toBeUndefined();
+    expect(sim.getState().projectiles).toHaveLength(0);
+    expect(sim.removePlayer('p1')).toBe(false);
+  });
+
   it('should walk in 2.5D (x and z) when arrow keys are pressed', () => {
     const input: InputState = { ...emptyInput, right: true, down: true };
 

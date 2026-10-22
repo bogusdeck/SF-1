@@ -49,6 +49,7 @@ export class LFRoom extends Room<{ state: NetworkRoomState; metadata: { roomCode
   private simulation!: GameSimulation;
   private clientInputs: Map<string, { seq: number; tick: number; input: InputState }> = new Map();
   private countdownTicks = 0;
+  private battleParticipantCount = 0;
 
   onCreate(options: { roomCode?: string; create?: boolean }) {
     this.setState(new NetworkRoomState());
@@ -73,6 +74,14 @@ export class LFRoom extends Room<{ state: NetworkRoomState; metadata: { roomCode
       if (player && this.state.phase === 'lobby') {
         const charName = message.character === 'Dennis' ? 'Dennis' : 'Davis';
         player.character = charName;
+        this.simulation.removePlayer(client.sessionId);
+        this.simulation.addPlayer(
+          client.sessionId,
+          charName,
+          player.x,
+          player.z,
+          player.facing === -1 ? -1 : 1
+        );
       }
     });
 
@@ -169,8 +178,7 @@ export class LFRoom extends Room<{ state: NetworkRoomState; metadata: { roomCode
 
     if (code === CloseCode.CONSENTED || code === CloseCode.NORMAL_CLOSURE) {
       // Intentional leave: remove from state & simulation
-      this.state.players.delete(client.sessionId);
-      this.clientInputs.delete(client.sessionId);
+      this.removePlayer(client.sessionId);
       return;
     }
 
@@ -182,8 +190,22 @@ export class LFRoom extends Room<{ state: NetworkRoomState; metadata: { roomCode
       console.log(`Client reconnected: ${client.sessionId}`);
     } catch {
       console.log(`Reconnection window expired for client: ${client.sessionId}`);
-      this.state.players.delete(client.sessionId);
-      this.clientInputs.delete(client.sessionId);
+      this.removePlayer(client.sessionId);
+    }
+  }
+
+  private removePlayer(sessionId: string) {
+    this.state.players.delete(sessionId);
+    this.clientInputs.delete(sessionId);
+    this.simulation.removePlayer(sessionId);
+
+    if (this.state.phase === 'countdown' && this.state.players.size < 2) {
+      this.state.phase = 'lobby';
+      this.state.countdown = 0;
+      this.countdownTicks = 0;
+      this.state.players.forEach((player: NetworkPlayerState) => {
+        player.isReady = false;
+      });
     }
   }
 
@@ -196,7 +218,7 @@ export class LFRoom extends Room<{ state: NetworkRoomState; metadata: { roomCode
       if (!p.isReady) allReady = false;
     });
 
-    if (count >= 1 && allReady) {
+    if (count >= 2 && allReady) {
       this.state.phase = 'countdown';
       this.state.countdown = 3;
       this.countdownTicks = 90; // 3 seconds at 30 TPS
@@ -211,6 +233,8 @@ export class LFRoom extends Room<{ state: NetworkRoomState; metadata: { roomCode
       this.state.countdown = Math.ceil(this.countdownTicks / 30);
       if (this.countdownTicks <= 0) {
         this.state.phase = 'battle';
+        this.state.countdown = 0;
+        this.battleParticipantCount = this.state.players.size;
       }
       return;
     }
@@ -290,6 +314,14 @@ export class LFRoom extends Room<{ state: NetworkRoomState; metadata: { roomCode
     });
     for (const id of toDelete) {
       this.state.projectiles.delete(id);
+    }
+
+    if (this.battleParticipantCount >= 2) {
+      const alivePlayers = Object.values(simState.players).filter((player) => !player.isDead);
+      if (alivePlayers.length <= 1) {
+        this.state.phase = 'gameover';
+        this.state.winnerId = alivePlayers[0]?.id ?? '';
+      }
     }
   }
 }

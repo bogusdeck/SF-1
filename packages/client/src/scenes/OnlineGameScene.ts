@@ -11,6 +11,8 @@ import {
 } from '@lf-online/shared';
 import { TouchControls } from '../ui/TouchControls';
 import { loadKeyMapping } from '../config/keyboardConfig';
+import { createArenaStage, preloadArenaAssets } from '../rendering/arena';
+import { updateFighterStatus } from '../rendering/hud';
 
 interface RemotePlayerVisual {
   sprite: Phaser.GameObjects.Sprite;
@@ -70,6 +72,8 @@ export class OnlineGameScene extends Phaser.Scene {
   private boxGraphics!: Phaser.GameObjects.Graphics;
   private pingText!: Phaser.GameObjects.Text;
   private disconnectNotice!: Phaser.GameObjects.Text;
+  private gameOverText!: Phaser.GameObjects.Text;
+  private matchOver = false;
 
   // P1 HUD
   private p1HpBarFill!: Phaser.GameObjects.Graphics;
@@ -106,24 +110,7 @@ export class OnlineGameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.atlas(
-      'davis_atlas',
-      '/assets/characters/davis_atlas.png',
-      '/assets/characters/davis_atlas.json'
-    );
-    this.load.json('davis_data', '/assets/characters/davis.json');
-
-    this.load.atlas(
-      'dennis_atlas',
-      '/assets/characters/dennis_atlas.png',
-      '/assets/characters/dennis_atlas.json'
-    );
-    this.load.json('dennis_data', '/assets/characters/dennis.json');
-
-    this.load.image('shadow', '/assets/shadow.png');
-    this.load.image('energy_ball', '/assets/energy_ball.png');
-    this.load.image('bg_hkc_1', '/assets/bg/hkc/back1.png');
-    this.load.image('bg_hkc_2', '/assets/bg/hkc/back2.png');
+    preloadArenaAssets(this);
   }
 
   create() {
@@ -144,10 +131,22 @@ export class OnlineGameScene extends Phaser.Scene {
     this.dennisData = this.cache.json.get('dennis_data') as CharacterData;
 
     // 1. Setup Background Environment
-    this.setupStage();
+    createArenaStage(this);
 
     // 2. Setup HUD (HP/MP, Avatar, Ping, Disconnect warning)
     this.setupHUD();
+    this.gameOverText = this.add.text(400, 215, '', {
+      fontFamily: 'monospace',
+      fontSize: '28px',
+      color: '#f0ad4e',
+      fontStyle: 'bold',
+      align: 'center',
+      backgroundColor: '#121418',
+      padding: { x: 18, y: 10 },
+    });
+    this.gameOverText.setOrigin(0.5);
+    this.gameOverText.setDepth(2500);
+    this.gameOverText.setVisible(false);
 
     // 3. Setup Controls
     this.setupControls();
@@ -200,34 +199,6 @@ export class OnlineGameScene extends Phaser.Scene {
 
     // 6. Setup Mobile Touch Controls Overlay
     this.touchControls = new TouchControls(this);
-  }
-
-  private setupStage() {
-    const bgStadium = this.add.image(400, 100, 'bg_hkc_1');
-    bgStadium.setDisplaySize(800, 160);
-    bgStadium.setDepth(10);
-
-    const bgCrowd = this.add.image(400, 200, 'bg_hkc_2');
-    bgCrowd.setDisplaySize(800, 120);
-    bgCrowd.setDepth(20);
-
-    const floor = this.add.graphics();
-    floor.setDepth(30);
-
-    floor.fillStyle(0x1a1c22, 1);
-    floor.fillRect(0, 240, 800, 210);
-
-    floor.fillStyle(0x272b33, 1);
-    floor.fillRect(0, 280, 800, 170);
-
-    floor.lineStyle(2, 0x4a5360, 0.9);
-    floor.strokeRect(40, 290, 720, 150);
-
-    floor.lineStyle(1.5, 0x3d4754, 0.7);
-    floor.strokeCircle(400, 365, 45);
-    floor.lineStyle(1, 0x373e48, 0.6);
-    floor.lineBetween(40, 365, 760, 365);
-    floor.lineBetween(400, 290, 400, 440);
   }
 
   private setupHUD() {
@@ -452,6 +423,13 @@ export class OnlineGameScene extends Phaser.Scene {
     if (!room) return;
 
     room.onStateChange((state: NetworkRoomState) => {
+      this.matchOver = state.phase === 'gameover';
+      if (this.matchOver) {
+        const winner = state.winnerId ? state.players.get(state.winnerId) : undefined;
+        this.gameOverText.setText(winner ? `${winner.name.toUpperCase()} WINS` : 'DRAW');
+        this.gameOverText.setVisible(true);
+      }
+
       // 1. Process Local Player Reconciliation
       const localNetPlayer = state.players.get(this.localSessionId);
       if (localNetPlayer) {
@@ -459,8 +437,10 @@ export class OnlineGameScene extends Phaser.Scene {
       }
 
       // 2. Process Remote Players
+      const activeRemoteIds = new Set<string>();
       state.players.forEach((player: NetworkPlayerState, id: string) => {
         if (id === this.localSessionId) return;
+        activeRemoteIds.add(id);
 
         let remote = this.remotePlayers.get(id);
         if (!remote) {
@@ -506,6 +486,14 @@ export class OnlineGameScene extends Phaser.Scene {
         remote.connected = player.connected;
       });
 
+      for (const [id, remote] of this.remotePlayers) {
+        if (!activeRemoteIds.has(id)) {
+          remote.sprite.destroy();
+          remote.shadow.destroy();
+          this.remotePlayers.delete(id);
+        }
+      }
+
       // 3. Process Projectiles
       this.syncProjectiles(state.projectiles);
     });
@@ -536,6 +524,11 @@ export class OnlineGameScene extends Phaser.Scene {
   }
 
   update(_time: number, delta: number) {
+    if (this.matchOver) {
+      this.renderScene();
+      return;
+    }
+
     // Fixed 30 TPS simulation accumulator
     this.tickAccumulator += delta;
     while (this.tickAccumulator >= MS_PER_TICK) {
@@ -688,39 +681,31 @@ export class OnlineGameScene extends Phaser.Scene {
   }
 
   private updateHUD(remote: RemotePlayerVisual | null) {
-    const barWidth = 178;
-    const barHeight = 12;
-
-    // Local Player HP/MP
-    const lHpRatio = Math.max(0, Math.min(1, this.localHp / 500));
-    const lMpRatio = Math.max(0, Math.min(1, this.localMp / 500));
-
-    this.p1HpBarFill.clear();
-    this.p1HpBarFill.fillStyle(0xd9534f, 1);
-    this.p1HpBarFill.fillRect(79, 33, barWidth * lHpRatio, barHeight);
-
-    this.p1MpBarFill.clear();
-    this.p1MpBarFill.fillStyle(0x0275d8, 1);
-    this.p1MpBarFill.fillRect(79, 51, barWidth * lMpRatio, barHeight);
-
-    this.p1HpText.setText(`HP ${Math.round(this.localHp)}/500`);
-    this.p1MpText.setText(`MP ${Math.round(this.localMp)}/500`);
+    updateFighterStatus(
+      {
+        hpFill: this.p1HpBarFill,
+        mpFill: this.p1MpBarFill,
+        hpText: this.p1HpText,
+        mpText: this.p1MpText,
+        x: 79,
+      },
+      this.localHp,
+      this.localMp
+    );
 
     // Remote Player HP/MP
     if (remote) {
-      const rHpRatio = Math.max(0, Math.min(1, remote.hp / 500));
-      const rMpRatio = Math.max(0, Math.min(1, remote.mp / 500));
-
-      this.p2HpBarFill.clear();
-      this.p2HpBarFill.fillStyle(0xd9534f, 1);
-      this.p2HpBarFill.fillRect(543, 33, barWidth * rHpRatio, barHeight);
-
-      this.p2MpBarFill.clear();
-      this.p2MpBarFill.fillStyle(0x0275d8, 1);
-      this.p2MpBarFill.fillRect(543, 51, barWidth * rMpRatio, barHeight);
-
-      this.p2HpText.setText(`HP ${Math.round(remote.hp)}/500`);
-      this.p2MpText.setText(`MP ${Math.round(remote.mp)}/500`);
+      updateFighterStatus(
+        {
+          hpFill: this.p2HpBarFill,
+          mpFill: this.p2MpBarFill,
+          hpText: this.p2HpText,
+          mpText: this.p2MpText,
+          x: 543,
+        },
+        remote.hp,
+        remote.mp
+      );
       this.p2NameText.setText(remote.name.toUpperCase());
 
       // Disconnect handling

@@ -10,6 +10,8 @@ import {
 } from '@lf-online/shared';
 import { TouchControls } from '../ui/TouchControls';
 import { loadKeyMapping, type KeyMapping } from '../config/keyboardConfig';
+import { createArenaStage, preloadArenaAssets } from '../rendering/arena';
+import { updateFighterStatus } from '../rendering/hud';
 
 interface PlayerRenderObjects {
   sprite: Phaser.GameObjects.Sprite;
@@ -81,26 +83,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    // 1. Character Texture Atlases & JSON definitions
-    this.load.atlas(
-      'davis_atlas',
-      '/assets/characters/davis_atlas.png',
-      '/assets/characters/davis_atlas.json'
-    );
-    this.load.json('davis_data', '/assets/characters/davis.json');
-
-    this.load.atlas(
-      'dennis_atlas',
-      '/assets/characters/dennis_atlas.png',
-      '/assets/characters/dennis_atlas.json'
-    );
-    this.load.json('dennis_data', '/assets/characters/dennis.json');
-
-    // 2. Shared Game Sprites & Backgrounds
-    this.load.image('shadow', '/assets/shadow.png');
-    this.load.image('energy_ball', '/assets/energy_ball.png');
-    this.load.image('bg_hkc_1', '/assets/bg/hkc/back1.png');
-    this.load.image('bg_hkc_2', '/assets/bg/hkc/back2.png');
+    preloadArenaAssets(this);
   }
 
   create() {
@@ -127,7 +110,7 @@ export class GameScene extends Phaser.Scene {
     this.simulation.addPlayer(this.p2Id, 'Dennis', 460, 370, -1);
 
     // 2. Setup Background & Stage Environment
-    this.setupStage();
+    createArenaStage(this);
 
     // 3. Setup Entities (Shadows, Sprites, Collision Visualizer)
     this.setupPlayerRender(this.p1Id, 'davis_atlas', this.davisData, 340, 370);
@@ -170,41 +153,6 @@ export class GameScene extends Phaser.Scene {
       charData,
       atlasKey,
     });
-  }
-
-  private setupStage() {
-    // Upper stadium lighting
-    const bgStadium = this.add.image(400, 100, 'bg_hkc_1');
-    bgStadium.setDisplaySize(800, 160);
-    bgStadium.setDepth(10);
-
-    // Cheering crowd tier
-    const bgCrowd = this.add.image(400, 200, 'bg_hkc_2');
-    bgCrowd.setDisplaySize(800, 120);
-    bgCrowd.setDepth(20);
-
-    // Arena Floor
-    const floor = this.add.graphics();
-    floor.setDepth(30);
-
-    // Ring apron
-    floor.fillStyle(0x1a1c22, 1);
-    floor.fillRect(0, 240, 800, 210);
-
-    // Main fighting mat
-    floor.fillStyle(0x272b33, 1);
-    floor.fillRect(0, 280, 800, 170);
-
-    // Arena ropes / borders
-    floor.lineStyle(2, 0x4a5360, 0.9);
-    floor.strokeRect(40, 290, 720, 150);
-
-    // Center circle & mat grid accents
-    floor.lineStyle(1.5, 0x3d4754, 0.7);
-    floor.strokeCircle(400, 365, 45);
-    floor.lineStyle(1, 0x373e48, 0.6);
-    floor.lineBetween(40, 365, 760, 365);
-    floor.lineBetween(400, 290, 400, 440);
   }
 
   private setupHUD() {
@@ -665,39 +613,33 @@ export class GameScene extends Phaser.Scene {
   private updateHealthManaBars() {
     const p1 = this.simulation.getPlayer(this.p1Id);
     const p2 = this.simulation.getPlayer(this.p2Id);
-    const barWidth = 178;
-    const barHeight = 12;
 
     if (p1 && this.p1HpBarFill) {
-      const hpRatio = Math.max(0, Math.min(1, p1.hp / 500));
-      const mpRatio = Math.max(0, Math.min(1, p1.mp / 500));
-
-      this.p1HpBarFill.clear();
-      this.p1HpBarFill.fillStyle(0xd9534f, 1);
-      this.p1HpBarFill.fillRect(79, 33, barWidth * hpRatio, barHeight);
-
-      this.p1MpBarFill.clear();
-      this.p1MpBarFill.fillStyle(0x0275d8, 1);
-      this.p1MpBarFill.fillRect(79, 51, barWidth * mpRatio, barHeight);
-
-      this.p1HpText.setText(`HP ${Math.round(p1.hp)}/500`);
-      this.p1MpText.setText(`MP ${Math.round(p1.mp)}/500`);
+      updateFighterStatus(
+        {
+          hpFill: this.p1HpBarFill,
+          mpFill: this.p1MpBarFill,
+          hpText: this.p1HpText,
+          mpText: this.p1MpText,
+          x: 79,
+        },
+        p1.hp,
+        p1.mp
+      );
     }
 
     if (p2 && this.p2HpBarFill) {
-      const hpRatio = Math.max(0, Math.min(1, p2.hp / 500));
-      const mpRatio = Math.max(0, Math.min(1, p2.mp / 500));
-
-      this.p2HpBarFill.clear();
-      this.p2HpBarFill.fillStyle(0xd9534f, 1);
-      this.p2HpBarFill.fillRect(543, 33, barWidth * hpRatio, barHeight);
-
-      this.p2MpBarFill.clear();
-      this.p2MpBarFill.fillStyle(0x0275d8, 1);
-      this.p2MpBarFill.fillRect(543, 51, barWidth * mpRatio, barHeight);
-
-      this.p2HpText.setText(`HP ${Math.round(p2.hp)}/500`);
-      this.p2MpText.setText(`MP ${Math.round(p2.mp)}/500`);
+      updateFighterStatus(
+        {
+          hpFill: this.p2HpBarFill,
+          mpFill: this.p2MpBarFill,
+          hpText: this.p2HpText,
+          mpText: this.p2MpText,
+          x: 543,
+        },
+        p2.hp,
+        p2.mp
+      );
     }
   }
 

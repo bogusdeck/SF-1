@@ -130,6 +130,21 @@ describe('Phase 4: Colyseus Authoritative Multiplayer & Rooms', () => {
     await room2.leave();
   });
 
+  it('should require at least two ready players before starting', async () => {
+    const client = new Client(`http://localhost:${TEST_PORT}`);
+    const room = await client.create<any, NetworkRoomState>(
+      'game_room',
+      { create: true, name: 'Solo player' },
+      NetworkRoomState
+    );
+
+    room.send('ready', { ready: true });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    expect(room.state.phase).toBe('lobby');
+    await room.leave();
+  });
+
   it('should respond to ping messages with round-trip latency data', async () => {
     const client = new Client(`http://localhost:${TEST_PORT}`);
     const room = await client.create<any, NetworkRoomState>(

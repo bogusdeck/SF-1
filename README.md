@@ -157,7 +157,7 @@ You can test full online multiplayer on your local machine using two browser win
 - 🔥 **Special Move — Dragon Blast (`D + F + A`)**:
   - While facing right: Press `D` ➔ `→` ➔ `A`
   - While facing left: Press `D` ➔ `←` ➔ `A`
-  - Launches an energy ball projectile (costs 100 MP). Projectiles collide and clash mid-air!
+  - Launches an energy ball projectile (costs 50 MP). Projectiles collide and clash mid-air!
 
 #### 🥊 Player 2 (Local 2-Player Mode)
 - **Move 2.5D**: `I` (Up), `K` (Down), `J` (Left), `L` (Right)
@@ -189,11 +189,12 @@ When playing on touch devices (phones/tablets) or with `?touch=1`:
 Run the full Vitest suite (22 tests verifying deterministic simulation, combat knockdowns, projectile clashes, and authoritative Colyseus room networking):
 
 ```bash
-# Run shared deterministic physics & combat tests (18 tests)
+# Run all shared simulation and server multiplayer tests
 pnpm test
 
-# Run Colyseus authoritative server integration tests (4 tests)
-./packages/shared/node_modules/.bin/vitest run --pool=threads packages/server/src/__tests__/multiplayer.test.ts
+# Run a package suite individually
+pnpm test:shared
+pnpm test:server
 ```
 
 ---
