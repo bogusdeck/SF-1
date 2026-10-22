@@ -1,0 +1,34 @@
+{
+  "name": "lf-online-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@12.3.4",
+  "scripts": {
+    "build:assets": "tsx scripts/build-assets.ts",
+    "dev:client": "pnpm --filter @lf-online/client dev",
+    "dev:server": "pnpm --filter @lf-online/server dev",
+    "build:shared": "pnpm --filter @lf-online/shared build",
+    "build:client": "pnpm --filter @lf-online/client build",
+    "build:server": "pnpm --filter @lf-online/server build",
+    "build": "pnpm build:assets && pnpm build:shared && pnpm build:client && pnpm build:server",
+    "test": "pnpm --filter @lf-online/shared test",
+    "mobile:assets": "tsx scripts/generate-mobile-assets.ts",
+    "cap:sync": "cap sync",
+    "cap:build": "pnpm build:client && cap sync",
+    "cap:android": "cap open android",
+    "cap:ios": "cap open ios",
+    "cap:run:android": "cap run android",
+    "cap:run:ios": "cap run ios"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/ios": "^8.5.3",
+    "sharp": "^0.33.5",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.5.3"
+  }
+}

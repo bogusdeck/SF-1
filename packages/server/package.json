@@ -1,0 +1,29 @@
+{
+  "name": "@lf-online/server",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest run --pool=threads"
+  },
+  "dependencies": {
+    "@colyseus/core": "^0.18.9",
+    "@colyseus/schema": "^5.0.40",
+    "@colyseus/ws-transport": "^0.18.4",
+    "@lf-online/shared": "workspace:*",
+    "colyseus": "^0.18.9",
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@colyseus/sdk": "^0.18.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.9",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.2.7"
+  }
+}

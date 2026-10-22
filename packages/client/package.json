@@ -1,0 +1,20 @@
+{
+  "name": "@lf-online/client",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@colyseus/sdk": "^0.18.5",
+    "@lf-online/shared": "workspace:*",
+    "colyseus.js": "^0.16.22",
+    "phaser": "^3.88.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0"
+  }
+}

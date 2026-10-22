@@ -1,0 +1,6144 @@
+{
+  "name": "Dennis",
+  "stats": {
+    "hp": 500,
+    "mp": 500,
+    "walkSpeed": 5,
+    "runSpeed": 10.5,
+    "jumpHeight": 16.299999
+  },
+  "frames": {
+    "0": {
+      "name": "standing",
+      "pic": 0,
+      "wait": 5,
+      "next": 1,
+      "state": "standing",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 21,
+          "y": 18,
+          "w": 43,
+          "h": 62
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Fa": 235,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "1": {
+      "name": "standing",
+      "pic": 1,
+      "wait": 6,
+      "next": 2,
+      "state": "standing",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 21,
+          "y": 18,
+          "w": 43,
+          "h": 62
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Fa": 235,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "2": {
+      "name": "standing",
+      "pic": 2,
+      "wait": 5,
+      "next": 3,
+      "state": "standing",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 21,
+          "y": 18,
+          "w": 43,
+          "h": 62
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Fa": 235,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "3": {
+      "name": "standing",
+      "pic": 3,
+      "wait": 6,
+      "next": 999,
+      "state": "standing",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 21,
+          "y": 18,
+          "w": 43,
+          "h": 62
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Fa": 235,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "5": {
+      "name": "walking",
+      "pic": 4,
+      "wait": 3,
+      "next": 999,
+      "state": "walking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 78,
+      "bdy": [
+        {
+          "x": 28,
+          "y": 15,
+          "w": 27,
+          "h": 65
+        }
+      ],
+      "itr": [
+        {
+          "x": 40,
+          "y": 16,
+          "w": 25,
+          "h": 65,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Fa": 235,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "6": {
+      "name": "walking",
+      "pic": 5,
+      "wait": 3,
+      "next": 999,
+      "state": "walking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 28,
+          "y": 15,
+          "w": 27,
+          "h": 65
+        }
+      ],
+      "itr": [
+        {
+          "x": 40,
+          "y": 16,
+          "w": 25,
+          "h": 65,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Fa": 235,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "7": {
+      "name": "walking",
+      "pic": 6,
+      "wait": 3,
+      "next": 999,
+      "state": "walking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 28,
+          "y": 15,
+          "w": 27,
+          "h": 65
+        }
+      ],
+      "itr": [
+        {
+          "x": 40,
+          "y": 16,
+          "w": 25,
+          "h": 65,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Fa": 235,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "8": {
+      "name": "walking",
+      "pic": 7,
+      "wait": 3,
+      "next": 999,
+      "state": "walking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 78,
+      "bdy": [
+        {
+          "x": 28,
+          "y": 15,
+          "w": 27,
+          "h": 65
+        }
+      ],
+      "itr": [
+        {
+          "x": 40,
+          "y": 16,
+          "w": 25,
+          "h": 65,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Fa": 235,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "9": {
+      "name": "running",
+      "pic": 20,
+      "wait": 3,
+      "next": 0,
+      "state": "running",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 38,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 19,
+          "w": 38,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "10": {
+      "name": "running",
+      "pic": 21,
+      "wait": 3,
+      "next": 0,
+      "state": "running",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 19,
+          "w": 38,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "11": {
+      "name": "running",
+      "pic": 22,
+      "wait": 3,
+      "next": 0,
+      "state": "running",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 40,
+      "centery": 81,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 19,
+          "w": 38,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "12": {
+      "name": "heavy_obj_walk",
+      "pic": 23,
+      "wait": 3,
+      "next": 0,
+      "state": "walking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 15,
+          "w": 28,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "13": {
+      "name": "heavy_obj_walk",
+      "pic": 24,
+      "wait": 3,
+      "next": 0,
+      "state": "walking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 80,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 15,
+          "w": 28,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "14": {
+      "name": "heavy_obj_walk",
+      "pic": 25,
+      "wait": 3,
+      "next": 0,
+      "state": "walking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 80,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 15,
+          "w": 28,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "15": {
+      "name": "heavy_obj_walk",
+      "pic": 26,
+      "wait": 3,
+      "next": 0,
+      "state": "walking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 80,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 15,
+          "w": 28,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "16": {
+      "name": "heavy_obj_run",
+      "pic": 125,
+      "wait": 3,
+      "next": 0,
+      "state": "running",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 30,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 15,
+          "w": 28,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "17": {
+      "name": "heavy_obj_run",
+      "pic": 126,
+      "wait": 3,
+      "next": 0,
+      "state": "running",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 37,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 15,
+          "w": 28,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "18": {
+      "name": "heavy_obj_run",
+      "pic": 127,
+      "wait": 3,
+      "next": 0,
+      "state": "running",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 33,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 15,
+          "w": 28,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "19": {
+      "name": "heavy_stop_run",
+      "pic": 128,
+      "wait": 7,
+      "next": 999,
+      "state": "other",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 29,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 5,
+          "y": 15,
+          "w": 45,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "20": {
+      "name": "normal_weapon_atck",
+      "pic": 70,
+      "wait": 1,
+      "next": 21,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 40,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 11,
+          "w": 33,
+          "h": 69
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "21": {
+      "name": "normal_weapon_atck",
+      "pic": 71,
+      "wait": 1,
+      "next": 22,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 24,
+          "y": 13,
+          "w": 33,
+          "h": 66
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "22": {
+      "name": "normal_weapon_atck",
+      "pic": 72,
+      "wait": 1,
+      "next": 23,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 26,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 11,
+          "w": 36,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "23": {
+      "name": "normal_weapon_atck",
+      "pic": 73,
+      "wait": 1,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 25,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 9,
+          "w": 36,
+          "h": 66
+        },
+        {
+          "x": 25,
+          "y": 61,
+          "w": 17,
+          "h": 18
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "25": {
+      "name": "normal_weapon_atck",
+      "pic": 74,
+      "wait": 1,
+      "next": 26,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 21,
+          "y": 11,
+          "w": 30,
+          "h": 69
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "26": {
+      "name": "normal_weapon_atck",
+      "pic": 75,
+      "wait": 1,
+      "next": 27,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 32,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 17,
+          "y": 11,
+          "w": 32,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "27": {
+      "name": "normal_weapon_atck",
+      "pic": 76,
+      "wait": 1,
+      "next": 28,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 23,
+      "centery": 80,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 10,
+          "w": 36,
+          "h": 71
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "28": {
+      "name": "normal_weapon_atck",
+      "pic": 77,
+      "wait": 1,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 11,
+          "w": 34,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "30": {
+      "name": "jump_weapon_atck",
+      "pic": 80,
+      "wait": 1,
+      "next": 31,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 40,
+      "centery": 77,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 7,
+          "w": 32,
+          "h": 58
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "31": {
+      "name": "jump_weapon_atck",
+      "pic": 81,
+      "wait": 1,
+      "next": 32,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 76,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 7,
+          "w": 26,
+          "h": 39
+        },
+        {
+          "x": 13,
+          "y": 40,
+          "w": 24,
+          "h": 30
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "32": {
+      "name": "jump_weapon_atck",
+      "pic": 82,
+      "wait": 1,
+      "next": 33,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 38,
+      "centery": 76,
+      "bdy": [
+        {
+          "x": 11,
+          "y": 32,
+          "w": 33,
+          "h": 43
+        },
+        {
+          "x": 29,
+          "y": 12,
+          "w": 26,
+          "h": 38
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "33": {
+      "name": "jump_weapon_atck",
+      "pic": 83,
+      "wait": 4,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 37,
+      "centery": 76,
+      "bdy": [
+        {
+          "x": 11,
+          "y": 32,
+          "w": 33,
+          "h": 43
+        },
+        {
+          "x": 26,
+          "y": 9,
+          "w": 26,
+          "h": 37
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "35": {
+      "name": "run_weapon_atck",
+      "pic": 84,
+      "wait": 1,
+      "next": 36,
+      "state": "attacking",
+      "dvx": 6,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 80,
+      "bdy": [
+        {
+          "x": 21,
+          "y": 15,
+          "w": 31,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "36": {
+      "name": "run_weapon_atck",
+      "pic": 85,
+      "wait": 2,
+      "next": 37,
+      "state": "attacking",
+      "dvx": 4,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 38,
+      "centery": 80,
+      "bdy": [
+        {
+          "x": 23,
+          "y": 15,
+          "w": 34,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "37": {
+      "name": "run_weapon_atck",
+      "pic": 86,
+      "wait": 2,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 19,
+          "y": 17,
+          "w": 34,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "40": {
+      "name": "dash_weapon_atck",
+      "pic": 90,
+      "wait": 1,
+      "next": 41,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 10,
+          "w": 35,
+          "h": 52
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "41": {
+      "name": "dash_weapon_atck",
+      "pic": 91,
+      "wait": 1,
+      "next": 42,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 35,
+      "centery": 77,
+      "bdy": [
+        {
+          "x": 8,
+          "y": 32,
+          "w": 33,
+          "h": 45
+        },
+        {
+          "x": 23,
+          "y": 8,
+          "w": 34,
+          "h": 33
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "42": {
+      "name": "dash_weapon_atck",
+      "pic": 92,
+      "wait": 1,
+      "next": 43,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 32,
+      "centery": 78,
+      "bdy": [
+        {
+          "x": 8,
+          "y": 32,
+          "w": 33,
+          "h": 45
+        },
+        {
+          "x": 27,
+          "y": 13,
+          "w": 30,
+          "h": 33
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "43": {
+      "name": "dash_weapon_atck",
+      "pic": 93,
+      "wait": 8,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 31,
+      "centery": 78,
+      "bdy": [
+        {
+          "x": 8,
+          "y": 32,
+          "w": 33,
+          "h": 45
+        },
+        {
+          "x": 23,
+          "y": 13,
+          "w": 31,
+          "h": 37
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "45": {
+      "name": "light_weapon_thw",
+      "pic": 94,
+      "wait": 3,
+      "next": 46,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 40,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 19,
+          "y": 15,
+          "w": 34,
+          "h": 65
+        },
+        {
+          "x": 9,
+          "y": 36,
+          "w": 17,
+          "h": 18
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "46": {
+      "name": "light_weapon_thw",
+      "pic": 95,
+      "wait": 1,
+      "next": 47,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 24,
+          "y": 22,
+          "w": 32,
+          "h": 57
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "47": {
+      "name": "light_weapon_thw",
+      "pic": 96,
+      "wait": 9,
+      "next": 999,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 32,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 10,
+          "y": 38,
+          "w": 54,
+          "h": 21
+        },
+        {
+          "x": 26,
+          "y": 55,
+          "w": 32,
+          "h": 26
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "50": {
+      "name": "heavy_weapon_thw",
+      "pic": 27,
+      "wait": 4,
+      "next": 51,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 28,
+          "y": 19,
+          "w": 30,
+          "h": 62
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "51": {
+      "name": "heavy_weapon_thw",
+      "pic": 28,
+      "wait": 7,
+      "next": 999,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 27,
+      "centery": 77,
+      "bdy": [
+        {
+          "x": 8,
+          "y": 39,
+          "w": 61,
+          "h": 23
+        },
+        {
+          "x": 19,
+          "y": 56,
+          "w": 30,
+          "h": 24
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "52": {
+      "name": "sky_lgt_wp_thw",
+      "pic": 97,
+      "wait": 3,
+      "next": 53,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 80,
+      "bdy": [
+        {
+          "x": 15,
+          "y": 9,
+          "w": 29,
+          "h": 54
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "53": {
+      "name": "sky_lgt_wp_thw",
+      "pic": 98,
+      "wait": 1,
+      "next": 54,
+      "state": "other",
+      "dvx": 0,
+      "dvy": -2,
+      "dvz": 0,
+      "centerx": 43,
+      "centery": 80,
+      "bdy": [
+        {
+          "x": 35,
+          "y": 10,
+          "w": 36,
+          "h": 23
+        },
+        {
+          "x": 15,
+          "y": 18,
+          "w": 30,
+          "h": 43
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "54": {
+      "name": "sky_lgt_wp_thw",
+      "pic": 99,
+      "wait": 9,
+      "next": 999,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 40,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 15,
+          "w": 38,
+          "h": 38
+        },
+        {
+          "x": 3,
+          "y": 37,
+          "w": 34,
+          "h": 26
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "55": {
+      "name": "weapon_drink",
+      "pic": 132,
+      "wait": 3,
+      "next": 56,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 26,
+          "w": 37,
+          "h": 53
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 999
+    },
+    "56": {
+      "name": "weapon_drink",
+      "pic": 133,
+      "wait": 3,
+      "next": 57,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 26,
+          "w": 37,
+          "h": 53
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 999
+    },
+    "57": {
+      "name": "weapon_drink",
+      "pic": 134,
+      "wait": 3,
+      "next": 58,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 26,
+          "w": 37,
+          "h": 53
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 999
+    },
+    "58": {
+      "name": "weapon_drink",
+      "pic": 133,
+      "wait": 3,
+      "next": 55,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 26,
+          "w": 37,
+          "h": 53
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 999
+    },
+    "60": {
+      "name": "punch",
+      "pic": 10,
+      "wait": 2,
+      "next": 61,
+      "state": "attacking",
+      "dvx": 1,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 42,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 12,
+          "w": 27,
+          "h": 68
+        }
+      ],
+      "itr": [
+        {
+          "x": 21,
+          "y": 57,
+          "w": 37,
+          "h": 24,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "61": {
+      "name": "punch",
+      "pic": 11,
+      "wait": 1,
+      "next": 62,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 27,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 16,
+          "y": 19,
+          "w": 33,
+          "h": 59
+        }
+      ],
+      "itr": [
+        {
+          "x": 21,
+          "y": 30,
+          "w": 54,
+          "h": 23,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 25,
+          "bdefend": 30
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "62": {
+      "name": "punch",
+      "pic": 12,
+      "wait": 1,
+      "next": 63,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 25,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 16,
+          "y": 20,
+          "w": 33,
+          "h": 61
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "63": {
+      "name": "punch",
+      "pic": 13,
+      "wait": 1,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 35,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 19,
+          "y": 9,
+          "w": 36,
+          "h": 71
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "65": {
+      "name": "punch",
+      "pic": 14,
+      "wait": 2,
+      "next": 66,
+      "state": "attacking",
+      "dvx": 1,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 35,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 12,
+          "w": 27,
+          "h": 68
+        }
+      ],
+      "itr": [
+        {
+          "x": 16,
+          "y": 59,
+          "w": 35,
+          "h": 21,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "66": {
+      "name": "punch",
+      "pic": 15,
+      "wait": 1,
+      "next": 67,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 28,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 14,
+          "y": 19,
+          "w": 32,
+          "h": 62
+        }
+      ],
+      "itr": [
+        {
+          "x": 17,
+          "y": 37,
+          "w": 60,
+          "h": 19,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 25,
+          "bdefend": 30
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "67": {
+      "name": "punch",
+      "pic": 16,
+      "wait": 1,
+      "next": 68,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 30,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 17,
+          "y": 15,
+          "w": 37,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "68": {
+      "name": "punch",
+      "pic": 17,
+      "wait": 1,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 28,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 17,
+          "y": 15,
+          "w": 34,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "70": {
+      "name": "super_punch",
+      "pic": 8,
+      "wait": 2,
+      "next": 71,
+      "state": "attacking",
+      "dvx": 3,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 32,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 14,
+          "w": 30,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "71": {
+      "name": "super_punch",
+      "pic": 9,
+      "wait": 1,
+      "next": 72,
+      "state": "attacking",
+      "dvx": 5,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 28,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 20,
+          "y": 12,
+          "w": 26,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "72": {
+      "name": "super_punch",
+      "pic": 19,
+      "wait": 1,
+      "next": 73,
+      "state": "attacking",
+      "dvx": 3,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 4,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 4,
+          "y": 12,
+          "w": 42,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "73": {
+      "name": "super_punch",
+      "pic": 29,
+      "wait": 3,
+      "next": 74,
+      "state": "attacking",
+      "dvx": 3,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 7,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 6,
+          "y": 20,
+          "w": 37,
+          "h": 55
+        }
+      ],
+      "itr": [
+        {
+          "x": -13,
+          "y": 28,
+          "w": 84,
+          "h": 28,
+          "damage": 70,
+          "knockbackX": 10,
+          "knockbackY": 15,
+          "fall": 70,
+          "bdefend": 60
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "74": {
+      "name": "super_punch",
+      "pic": 39,
+      "wait": 1,
+      "next": 75,
+      "state": "attacking",
+      "dvx": 3,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 7,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 8,
+          "y": 17,
+          "w": 36,
+          "h": 61
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "75": {
+      "name": "super_punch",
+      "pic": 49,
+      "wait": 2,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 3,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 20,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 8,
+          "y": 17,
+          "w": 36,
+          "h": 61
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "80": {
+      "name": "jump_attack",
+      "pic": 37,
+      "wait": 2,
+      "next": 81,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 38,
+      "centery": 75,
+      "bdy": [
+        {
+          "x": 10,
+          "y": 17,
+          "w": 43,
+          "h": 52
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "81": {
+      "name": "jump_attack",
+      "pic": 38,
+      "wait": 5,
+      "next": 82,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 74,
+      "bdy": [
+        {
+          "x": 10,
+          "y": 19,
+          "w": 43,
+          "h": 49
+        }
+      ],
+      "itr": [
+        {
+          "x": 19,
+          "y": 40,
+          "w": 58,
+          "h": 17,
+          "damage": 35,
+          "knockbackX": 10,
+          "knockbackY": 15,
+          "fall": 70,
+          "bdefend": 30
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "82": {
+      "name": "jump_attack",
+      "pic": 37,
+      "wait": 3,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 76,
+      "bdy": [
+        {
+          "x": 10,
+          "y": 17,
+          "w": 40,
+          "h": 52
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "85": {
+      "name": "run_attack",
+      "pic": 102,
+      "wait": 1,
+      "next": 86,
+      "state": "attacking",
+      "dvx": 6,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 30,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 11,
+          "y": 17,
+          "w": 37,
+          "h": 62
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "86": {
+      "name": "run_attack",
+      "pic": 103,
+      "wait": 1,
+      "next": 87,
+      "state": "attacking",
+      "dvx": 4,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 27,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 11,
+          "y": 15,
+          "w": 39,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "87": {
+      "name": "run_attack",
+      "pic": 104,
+      "wait": 1,
+      "next": 88,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 27,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 10,
+          "y": 16,
+          "w": 38,
+          "h": 62
+        }
+      ],
+      "itr": [
+        {
+          "x": 9,
+          "y": 38,
+          "w": 68,
+          "h": 18,
+          "damage": 50,
+          "knockbackX": 10,
+          "knockbackY": 15,
+          "fall": 60,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "88": {
+      "name": "run_attack",
+      "pic": 105,
+      "wait": 1,
+      "next": 89,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 29,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 16,
+          "w": 34,
+          "h": 63
+        }
+      ],
+      "itr": [
+        {
+          "x": 33,
+          "y": 41,
+          "w": 42,
+          "h": 25,
+          "damage": 50,
+          "knockbackX": 10,
+          "knockbackY": 15,
+          "fall": 60,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "89": {
+      "name": "run_attack",
+      "pic": 106,
+      "wait": 1,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 31,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 11,
+          "w": 36,
+          "h": 67
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 70,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "90": {
+      "name": "dash_attack",
+      "pic": 107,
+      "wait": 2,
+      "next": 91,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 26,
+      "centery": 78,
+      "bdy": [
+        {
+          "x": 15,
+          "y": 20,
+          "w": 47,
+          "h": 51
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "91": {
+      "name": "dash_attack",
+      "pic": 108,
+      "wait": 6,
+      "next": 92,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 20,
+      "centery": 78,
+      "bdy": [
+        {
+          "x": 11,
+          "y": 20,
+          "w": 41,
+          "h": 48
+        }
+      ],
+      "itr": [
+        {
+          "x": 24,
+          "y": 23,
+          "w": 55,
+          "h": 39,
+          "damage": 70,
+          "knockbackX": 10,
+          "knockbackY": 20,
+          "fall": 70,
+          "bdefend": 60
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "92": {
+      "name": "dash_attack",
+      "pic": 109,
+      "wait": 4,
+      "next": 216,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 25,
+      "centery": 78,
+      "bdy": [
+        {
+          "x": 15,
+          "y": 22,
+          "w": 55,
+          "h": 42
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "95": {
+      "name": "dash_defend",
+      "pic": 111,
+      "wait": 2,
+      "next": 0,
+      "state": "defending",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 14,
+          "y": 19,
+          "w": 28,
+          "h": 36
+        },
+        {
+          "x": 28,
+          "y": 37,
+          "w": 24,
+          "h": 34
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "100": {
+      "name": "rowing",
+      "pic": 66,
+      "wait": 2,
+      "next": 101,
+      "state": "defending",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 40,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "101": {
+      "name": "rowing",
+      "pic": 65,
+      "wait": 6,
+      "next": 0,
+      "state": "defending",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "102": {
+      "name": "rowing",
+      "pic": 58,
+      "wait": 2,
+      "next": 103,
+      "state": "defending",
+      "dvx": 9,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [
+        {
+          "x": 36,
+          "y": 54,
+          "w": 13,
+          "h": 25,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "103": {
+      "name": "rowing",
+      "pic": 59,
+      "wait": 2,
+      "next": 104,
+      "state": "defending",
+      "dvx": 9,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 34,
+      "centery": 79,
+      "bdy": [],
+      "itr": [
+        {
+          "x": 36,
+          "y": 54,
+          "w": 13,
+          "h": 25,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "104": {
+      "name": "rowing",
+      "pic": 69,
+      "wait": 2,
+      "next": 105,
+      "state": "defending",
+      "dvx": 9,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [
+        {
+          "x": 36,
+          "y": 54,
+          "w": 13,
+          "h": 25,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "105": {
+      "name": "rowing",
+      "pic": 58,
+      "wait": 2,
+      "next": 219,
+      "state": "defending",
+      "dvx": 9,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 38,
+      "centery": 79,
+      "bdy": [],
+      "itr": [
+        {
+          "x": 36,
+          "y": 54,
+          "w": 13,
+          "h": 25,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "106": {
+      "name": "rowing",
+      "pic": 59,
+      "wait": 2,
+      "next": 219,
+      "state": "defending",
+      "dvx": 9,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 34,
+      "centery": 79,
+      "bdy": [],
+      "itr": [
+        {
+          "x": 293,
+          "y": 198,
+          "w": 1,
+          "h": 1,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "107": {
+      "name": "rowing",
+      "pic": 69,
+      "wait": 2,
+      "next": 219,
+      "state": "defending",
+      "dvx": 9,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 35,
+      "centery": 79,
+      "bdy": [],
+      "itr": [
+        {
+          "x": 36,
+          "y": 54,
+          "w": 13,
+          "h": 25,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "108": {
+      "name": "rowing",
+      "pic": 117,
+      "wait": 3,
+      "next": 109,
+      "state": "defending",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 72,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "109": {
+      "name": "rowing",
+      "pic": 118,
+      "wait": 6,
+      "next": 0,
+      "state": "defending",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "110": {
+      "name": "defend",
+      "pic": 56,
+      "wait": 12,
+      "next": 999,
+      "state": "defending",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 35,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 20,
+          "y": 19,
+          "w": 38,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Fa": 235,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "111": {
+      "name": "defend",
+      "pic": 57,
+      "wait": 0,
+      "next": 110,
+      "state": "defending",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 30,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 16,
+          "y": 19,
+          "w": 42,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "112": {
+      "name": "broken_defend",
+      "pic": 46,
+      "wait": 1,
+      "next": 113,
+      "state": "defending",
+      "dvx": -2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 5,
+          "y": 17,
+          "w": 64,
+          "h": 65
+        }
+      ],
+      "itr": [
+        {
+          "x": -9,
+          "y": 16,
+          "w": 85,
+          "h": 65,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "113": {
+      "name": "broken_defend",
+      "pic": 47,
+      "wait": 2,
+      "next": 114,
+      "state": "defending",
+      "dvx": -2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 46,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 5,
+          "y": 17,
+          "w": 64,
+          "h": 65
+        }
+      ],
+      "itr": [
+        {
+          "x": -9,
+          "y": 16,
+          "w": 85,
+          "h": 65,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "114": {
+      "name": "broken_defend",
+      "pic": 48,
+      "wait": 3,
+      "next": 999,
+      "state": "defending",
+      "dvx": -2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 43,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 5,
+          "y": 17,
+          "w": 64,
+          "h": 65
+        }
+      ],
+      "itr": [
+        {
+          "x": -9,
+          "y": 16,
+          "w": 85,
+          "h": 65,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "115": {
+      "name": "picking_light",
+      "pic": 36,
+      "wait": 4,
+      "next": 999,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 46,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 24,
+          "y": 43,
+          "w": 33,
+          "h": 37
+        },
+        {
+          "x": 32,
+          "y": 24,
+          "w": 28,
+          "h": 28
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "116": {
+      "name": "picking_heavy",
+      "pic": 36,
+      "wait": 2,
+      "next": 117,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 46,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 24,
+          "y": 43,
+          "w": 33,
+          "h": 37
+        },
+        {
+          "x": 36,
+          "y": 26,
+          "w": 26,
+          "h": 25
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "117": {
+      "name": "picking_heavy",
+      "pic": 36,
+      "wait": 2,
+      "next": 999,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 46,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 24,
+          "y": 43,
+          "w": 33,
+          "h": 37
+        },
+        {
+          "x": 34,
+          "y": 19,
+          "w": 26,
+          "h": 37
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "120": {
+      "name": "catching",
+      "pic": 51,
+      "wait": 2,
+      "next": 121,
+      "state": "catching",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 19,
+          "y": 15,
+          "w": 28,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "121": {
+      "name": "catching",
+      "pic": 50,
+      "wait": 0,
+      "next": 0,
+      "state": "catching",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 19,
+          "y": 15,
+          "w": 28,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0,
+      "hit_Ua": 295,
+      "hit_Da": 265,
+      "hit_Fj": 280
+    },
+    "122": {
+      "name": "catching",
+      "pic": 51,
+      "wait": 5,
+      "next": 123,
+      "state": "catching",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 19,
+          "y": 15,
+          "w": 28,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "123": {
+      "name": "catching",
+      "pic": 52,
+      "wait": 4,
+      "next": 121,
+      "state": "catching",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 31,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 19,
+          "y": 15,
+          "w": 28,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "130": {
+      "name": "picked_caught",
+      "pic": 53,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 40,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 14,
+          "w": 28,
+          "h": 66
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "131": {
+      "name": "picked_caught",
+      "pic": 54,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 14,
+          "w": 28,
+          "h": 66
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "132": {
+      "name": "picked_caught",
+      "pic": 55,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 14,
+          "w": 28,
+          "h": 66
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "133": {
+      "name": "picked_caught",
+      "pic": 30,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "134": {
+      "name": "picked_caught",
+      "pic": 31,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 38,
+      "centery": 83,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "135": {
+      "name": "picked_caught",
+      "pic": 32,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "136": {
+      "name": "picked_caught",
+      "pic": 33,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "137": {
+      "name": "picked_caught",
+      "pic": 34,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 71,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "138": {
+      "name": "picked_caught",
+      "pic": 35,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "139": {
+      "name": "picked_caught",
+      "pic": 40,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "140": {
+      "name": "picked_caught",
+      "pic": 41,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "141": {
+      "name": "picked_caught",
+      "pic": 42,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "142": {
+      "name": "picked_caught",
+      "pic": 43,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "143": {
+      "name": "picked_caught",
+      "pic": 44,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 74,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "144": {
+      "name": "picked_caught",
+      "pic": 45,
+      "wait": 3,
+      "next": 0,
+      "state": "caught",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "180": {
+      "name": "falling",
+      "pic": 30,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 25,
+          "w": 21,
+          "h": 20
+        }
+      ],
+      "itr": [
+        {
+          "x": 21,
+          "y": 14,
+          "w": 29,
+          "h": 44,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "181": {
+      "name": "falling",
+      "pic": 31,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 37,
+      "centery": 85,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 20,
+          "w": 24,
+          "h": 23
+        }
+      ],
+      "itr": [
+        {
+          "x": 8,
+          "y": 15,
+          "w": 30,
+          "h": 32,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        },
+        {
+          "x": 27,
+          "y": 35,
+          "w": 28,
+          "h": 21,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "182": {
+      "name": "falling",
+      "pic": 32,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 27,
+          "y": 22,
+          "w": 20,
+          "h": 18
+        }
+      ],
+      "itr": [
+        {
+          "x": 13,
+          "y": 18,
+          "w": 46,
+          "h": 26,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "183": {
+      "name": "falling",
+      "pic": 33,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 30,
+          "w": 27,
+          "h": 21
+        }
+      ],
+      "itr": [
+        {
+          "x": 32,
+          "y": 18,
+          "w": 33,
+          "h": 27,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        },
+        {
+          "x": 10,
+          "y": 38,
+          "w": 38,
+          "h": 21,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "184": {
+      "name": "falling",
+      "pic": 34,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 72,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "185": {
+      "name": "falling",
+      "pic": 35,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "186": {
+      "name": "falling",
+      "pic": 40,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 31,
+          "y": 24,
+          "w": 25,
+          "h": 23
+        }
+      ],
+      "itr": [
+        {
+          "x": 22,
+          "y": 12,
+          "w": 36,
+          "h": 50,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "187": {
+      "name": "falling",
+      "pic": 41,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 28,
+          "y": 27,
+          "w": 24,
+          "h": 26
+        }
+      ],
+      "itr": [
+        {
+          "x": 33,
+          "y": 6,
+          "w": 26,
+          "h": 46,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        },
+        {
+          "x": 26,
+          "y": 43,
+          "w": 21,
+          "h": 29,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "188": {
+      "name": "falling",
+      "pic": 42,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 30,
+          "y": 31,
+          "w": 24,
+          "h": 21
+        }
+      ],
+      "itr": [
+        {
+          "x": 14,
+          "y": 29,
+          "w": 58,
+          "h": 23,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "189": {
+      "name": "falling",
+      "pic": 43,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 30,
+          "y": 39,
+          "w": 23,
+          "h": 21
+        }
+      ],
+      "itr": [
+        {
+          "x": 24,
+          "y": 27,
+          "w": 26,
+          "h": 28,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        },
+        {
+          "x": 37,
+          "y": 45,
+          "w": 31,
+          "h": 28,
+          "damage": 30,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 10
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "190": {
+      "name": "falling",
+      "pic": 44,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 75,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "191": {
+      "name": "falling",
+      "pic": 45,
+      "wait": 3,
+      "next": 0,
+      "state": "falling",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "200": {
+      "name": "ice",
+      "pic": 67,
+      "wait": 2,
+      "next": 201,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 10,
+          "y": 9,
+          "w": 55,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "201": {
+      "name": "ice",
+      "pic": 68,
+      "wait": 90,
+      "next": 202,
+      "state": "ice",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 8,
+          "y": 6,
+          "w": 67,
+          "h": 73
+        }
+      ],
+      "itr": [
+        {
+          "x": 8,
+          "y": 6,
+          "w": 67,
+          "h": 73,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "202": {
+      "name": "ice",
+      "pic": 67,
+      "wait": 1,
+      "next": 182,
+      "state": "other",
+      "dvx": -4,
+      "dvy": -3,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 8,
+          "y": 6,
+          "w": 67,
+          "h": 73
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "203": {
+      "name": "fire",
+      "pic": 78,
+      "wait": 1,
+      "next": 204,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 35,
+          "w": 26,
+          "h": 19
+        }
+      ],
+      "itr": [
+        {
+          "x": 22,
+          "y": 35,
+          "w": 26,
+          "h": 19,
+          "damage": 20,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "204": {
+      "name": "fire",
+      "pic": 79,
+      "wait": 1,
+      "next": 203,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 35,
+          "w": 26,
+          "h": 19
+        }
+      ],
+      "itr": [
+        {
+          "x": 22,
+          "y": 35,
+          "w": 26,
+          "h": 19,
+          "damage": 20,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "205": {
+      "name": "fire",
+      "pic": 88,
+      "wait": 1,
+      "next": 206,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 35,
+          "w": 26,
+          "h": 19
+        }
+      ],
+      "itr": [
+        {
+          "x": 22,
+          "y": 35,
+          "w": 26,
+          "h": 19,
+          "damage": 20,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "206": {
+      "name": "fire",
+      "pic": 89,
+      "wait": 1,
+      "next": 205,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 35,
+          "w": 26,
+          "h": 19
+        }
+      ],
+      "itr": [
+        {
+          "x": 22,
+          "y": 35,
+          "w": 26,
+          "h": 19,
+          "damage": 20,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "207": {
+      "name": "tired",
+      "pic": 69,
+      "wait": 2,
+      "next": 0,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 44,
+          "y": 28,
+          "w": 22,
+          "h": 37
+        },
+        {
+          "x": 28,
+          "y": 47,
+          "w": 28,
+          "h": 35
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "210": {
+      "name": "jump",
+      "pic": 60,
+      "wait": 1,
+      "next": 211,
+      "state": "jumping",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 24,
+          "w": 35,
+          "h": 58
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "211": {
+      "name": "jump",
+      "pic": 61,
+      "wait": 1,
+      "next": 212,
+      "state": "jumping",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 26,
+          "w": 34,
+          "h": 56
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "212": {
+      "name": "jump",
+      "pic": 62,
+      "wait": 1,
+      "next": 0,
+      "state": "jumping",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 20,
+          "y": 11,
+          "w": 29,
+          "h": 61
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "213": {
+      "name": "dash",
+      "pic": 63,
+      "wait": 8,
+      "next": 216,
+      "state": "dash",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 43,
+          "y": 5,
+          "w": 23,
+          "h": 33
+        },
+        {
+          "x": 28,
+          "y": 29,
+          "w": 21,
+          "h": 33
+        },
+        {
+          "x": 18,
+          "y": 48,
+          "w": 27,
+          "h": 21
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "214": {
+      "name": "dash",
+      "pic": 64,
+      "wait": 8,
+      "next": 217,
+      "state": "dash",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 20,
+          "y": 5,
+          "w": 27,
+          "h": 38
+        },
+        {
+          "x": 16,
+          "y": 37,
+          "w": 36,
+          "h": 22
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "215": {
+      "name": "crouch",
+      "pic": 60,
+      "wait": 2,
+      "next": 999,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 26,
+          "w": 31,
+          "h": 54
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "216": {
+      "name": "dash",
+      "pic": 112,
+      "wait": 2,
+      "next": 0,
+      "state": "dash",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 35,
+          "y": 8,
+          "w": 27,
+          "h": 27
+        },
+        {
+          "x": 16,
+          "y": 30,
+          "w": 39,
+          "h": 37
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "217": {
+      "name": "dash",
+      "pic": 113,
+      "wait": 2,
+      "next": 0,
+      "state": "dash",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 13,
+          "w": 29,
+          "h": 51
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "218": {
+      "name": "stop_running",
+      "pic": 114,
+      "wait": 5,
+      "next": 999,
+      "state": "other",
+      "dvx": 1,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 17,
+          "y": 25,
+          "w": 30,
+          "h": 55
+        },
+        {
+          "x": 45,
+          "y": 47,
+          "w": 16,
+          "h": 32
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "219": {
+      "name": "crouch2",
+      "pic": 60,
+      "wait": 2,
+      "next": 999,
+      "state": "other",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 36,
+          "w": 29,
+          "h": 44
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "220": {
+      "name": "injured",
+      "pic": 120,
+      "wait": 2,
+      "next": 221,
+      "state": "injured",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 35,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 17,
+          "w": 29,
+          "h": 61
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "221": {
+      "name": "injured",
+      "pic": 121,
+      "wait": 3,
+      "next": 999,
+      "state": "injured",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 35,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 32,
+          "y": 16,
+          "w": 27,
+          "h": 63
+        },
+        {
+          "x": 22,
+          "y": 37,
+          "w": 26,
+          "h": 42
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "222": {
+      "name": "injured",
+      "pic": 123,
+      "wait": 2,
+      "next": 223,
+      "state": "injured",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 11,
+          "y": 24,
+          "w": 39,
+          "h": 31
+        },
+        {
+          "x": 25,
+          "y": 53,
+          "w": 40,
+          "h": 27
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "223": {
+      "name": "injured",
+      "pic": 124,
+      "wait": 3,
+      "next": 999,
+      "state": "injured",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 23,
+          "w": 40,
+          "h": 37
+        },
+        {
+          "x": 27,
+          "y": 56,
+          "w": 36,
+          "h": 24
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "224": {
+      "name": "injured",
+      "pic": 130,
+      "wait": 2,
+      "next": 225,
+      "state": "injured",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 43,
+      "centery": 76,
+      "bdy": [
+        {
+          "x": 25,
+          "y": 13,
+          "w": 30,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "225": {
+      "name": "injured",
+      "pic": 131,
+      "wait": 3,
+      "next": 999,
+      "state": "injured",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 44,
+      "centery": 75,
+      "bdy": [
+        {
+          "x": 24,
+          "y": 18,
+          "w": 35,
+          "h": 63
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "226": {
+      "name": "injured",
+      "pic": 120,
+      "wait": 6,
+      "next": 227,
+      "state": "injured",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 27,
+          "y": 22,
+          "w": 42,
+          "h": 58
+        }
+      ],
+      "itr": [
+        {
+          "x": 6,
+          "y": 12,
+          "w": 85,
+          "h": 68,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "227": {
+      "name": "injured",
+      "pic": 122,
+      "wait": 6,
+      "next": 228,
+      "state": "injured",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 28,
+          "y": 24,
+          "w": 39,
+          "h": 57
+        }
+      ],
+      "itr": [
+        {
+          "x": 6,
+          "y": 12,
+          "w": 85,
+          "h": 68,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "228": {
+      "name": "injured",
+      "pic": 121,
+      "wait": 6,
+      "next": 229,
+      "state": "injured",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 37,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 28,
+          "y": 23,
+          "w": 37,
+          "h": 58
+        }
+      ],
+      "itr": [
+        {
+          "x": 6,
+          "y": 12,
+          "w": 85,
+          "h": 68,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "229": {
+      "name": "injured",
+      "pic": 122,
+      "wait": 6,
+      "next": 999,
+      "state": "injured",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 26,
+          "w": 37,
+          "h": 53
+        }
+      ],
+      "itr": [
+        {
+          "x": 6,
+          "y": 12,
+          "w": 85,
+          "h": 68,
+          "damage": 15,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 0,
+          "bdefend": 0
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "230": {
+      "name": "lying",
+      "pic": 34,
+      "wait": 30,
+      "next": 219,
+      "state": "lying",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 38,
+      "centery": 73,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "231": {
+      "name": "lying",
+      "pic": 44,
+      "wait": 30,
+      "next": 219,
+      "state": "lying",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 75,
+      "bdy": [],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "232": {
+      "name": "throw_lying_man",
+      "pic": 27,
+      "wait": 3,
+      "next": 233,
+      "state": "catching",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 15,
+          "w": 36,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "233": {
+      "name": "throw_lying_man",
+      "pic": 28,
+      "wait": 1,
+      "next": 234,
+      "state": "catching",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 44,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 10,
+          "y": 28,
+          "w": 61,
+          "h": 28
+        },
+        {
+          "x": 19,
+          "y": 56,
+          "w": 30,
+          "h": 24
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "234": {
+      "name": "throw_lying_man",
+      "pic": 28,
+      "wait": 4,
+      "next": 999,
+      "state": "catching",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 44,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 13,
+          "y": 30,
+          "w": 57,
+          "h": 28
+        },
+        {
+          "x": 19,
+          "y": 56,
+          "w": 30,
+          "h": 24
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "235": {
+      "name": "ball1",
+      "pic": 140,
+      "wait": 1,
+      "next": 236,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 12,
+          "w": 27,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "236": {
+      "name": "ball1",
+      "pic": 141,
+      "wait": 1,
+      "next": 237,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 12,
+          "w": 27,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "237": {
+      "name": "ball1",
+      "pic": 142,
+      "wait": 1,
+      "next": 238,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 12,
+          "w": 27,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "238": {
+      "name": "ball1",
+      "pic": 143,
+      "wait": 1,
+      "next": 239,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 19,
+          "w": 39,
+          "h": 62
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "239": {
+      "name": "ball1",
+      "pic": 144,
+      "wait": 1,
+      "next": 240,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 33,
+          "y": 21,
+          "w": 36,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [
+        {
+          "kind": 1,
+          "x": 95,
+          "y": 44,
+          "action": 0,
+          "dvx": 0,
+          "dvy": 0,
+          "oid": 205,
+          "facing": 0
+        }
+      ],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "240": {
+      "name": "ball1",
+      "pic": 145,
+      "wait": 1,
+      "next": 241,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 34,
+          "y": 19,
+          "w": 36,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "241": {
+      "name": "ball1",
+      "pic": 145,
+      "wait": 2,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 30,
+          "y": 20,
+          "w": 39,
+          "h": 59
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 242,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "242": {
+      "name": "ball2",
+      "pic": 146,
+      "wait": 1,
+      "next": 243,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 31,
+          "y": 20,
+          "w": 39,
+          "h": 58
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "243": {
+      "name": "ball2",
+      "pic": 147,
+      "wait": 1,
+      "next": 244,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 18,
+          "w": 41,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "244": {
+      "name": "ball2",
+      "pic": 148,
+      "wait": 1,
+      "next": 245,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 19,
+          "w": 34,
+          "h": 58
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "245": {
+      "name": "ball2",
+      "pic": 149,
+      "wait": 1,
+      "next": 246,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 30,
+          "y": 13,
+          "w": 30,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [
+        {
+          "kind": 1,
+          "x": 95,
+          "y": 47,
+          "action": 60,
+          "dvx": 0,
+          "dvy": 0,
+          "oid": 205,
+          "facing": 0
+        }
+      ],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "246": {
+      "name": "ball2",
+      "pic": 150,
+      "wait": 1,
+      "next": 247,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 29,
+          "y": 13,
+          "w": 30,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 251,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "247": {
+      "name": "ball2",
+      "pic": 150,
+      "wait": 2,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 28,
+          "y": 15,
+          "w": 32,
+          "h": 66
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "251": {
+      "name": "ball34",
+      "pic": 151,
+      "wait": 1,
+      "next": 252,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 32,
+          "y": 15,
+          "w": 30,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "252": {
+      "name": "ball34",
+      "pic": 152,
+      "wait": 1,
+      "next": 253,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 23,
+          "y": 13,
+          "w": 34,
+          "h": 67
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "253": {
+      "name": "ball34",
+      "pic": 153,
+      "wait": 1,
+      "next": 254,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 12,
+          "w": 27,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "254": {
+      "name": "ball34",
+      "pic": 154,
+      "wait": 1,
+      "next": 255,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 33,
+          "y": 12,
+          "w": 35,
+          "h": 68
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "255": {
+      "name": "ball34",
+      "pic": 155,
+      "wait": 1,
+      "next": 256,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 31,
+          "y": 15,
+          "w": 36,
+          "h": 65
+        }
+      ],
+      "itr": [],
+      "opoint": [
+        {
+          "kind": 1,
+          "x": 95,
+          "y": 46,
+          "action": 0,
+          "dvx": 0,
+          "dvy": 0,
+          "oid": 205,
+          "facing": 0
+        }
+      ],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "256": {
+      "name": "ball34",
+      "pic": 156,
+      "wait": 1,
+      "next": 257,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 32,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 19,
+          "w": 39,
+          "h": 61
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "257": {
+      "name": "ball34",
+      "pic": 157,
+      "wait": 1,
+      "next": 258,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 31,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 21,
+          "y": 29,
+          "w": 42,
+          "h": 49
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "258": {
+      "name": "ball34",
+      "pic": 158,
+      "wait": 1,
+      "next": 259,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 31,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 21,
+          "y": 29,
+          "w": 42,
+          "h": 49
+        }
+      ],
+      "itr": [],
+      "opoint": [
+        {
+          "kind": 1,
+          "x": 95,
+          "y": 43,
+          "action": 50,
+          "dvx": 0,
+          "dvy": 0,
+          "oid": 205,
+          "facing": 0
+        }
+      ],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "259": {
+      "name": "ball34",
+      "pic": 159,
+      "wait": 1,
+      "next": 260,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 31,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 23,
+          "y": 27,
+          "w": 37,
+          "h": 51
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "260": {
+      "name": "ball34",
+      "pic": 160,
+      "wait": 1,
+      "next": 261,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 32,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 19,
+          "y": 19,
+          "w": 36,
+          "h": 61
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "261": {
+      "name": "ball34",
+      "pic": 161,
+      "wait": 2,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 32,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 19,
+          "y": 16,
+          "w": 30,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 262,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "262": {
+      "name": "ball34",
+      "pic": 161,
+      "wait": 1,
+      "next": 235,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 32,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 17,
+          "w": 33,
+          "h": 63
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "265": {
+      "name": "many_foot",
+      "pic": 13,
+      "wait": 1,
+      "next": 266,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 35,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 17,
+          "w": 33,
+          "h": 63
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "266": {
+      "name": "many_foot",
+      "pic": 162,
+      "wait": 1,
+      "next": 267,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 26,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 9,
+          "y": 14,
+          "w": 35,
+          "h": 65
+        }
+      ],
+      "itr": [
+        {
+          "x": 12,
+          "y": 51,
+          "w": 68,
+          "h": 17,
+          "damage": 27,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 1,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "267": {
+      "name": "many_foot",
+      "pic": 163,
+      "wait": 1,
+      "next": 268,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 30,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 17,
+          "w": 33,
+          "h": 63
+        }
+      ],
+      "itr": [
+        {
+          "x": 49,
+          "y": 9,
+          "w": 18,
+          "h": 64,
+          "damage": 4,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "268": {
+      "name": "many_foot",
+      "pic": 164,
+      "wait": 1,
+      "next": 269,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 33,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 8,
+          "y": 18,
+          "w": 39,
+          "h": 59
+        }
+      ],
+      "itr": [
+        {
+          "x": 21,
+          "y": 43,
+          "w": 63,
+          "h": 15,
+          "damage": 27,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 1,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "269": {
+      "name": "many_foot",
+      "pic": 165,
+      "wait": 1,
+      "next": 270,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 34,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 15,
+          "y": 18,
+          "w": 43,
+          "h": 61
+        }
+      ],
+      "itr": [
+        {
+          "x": 49,
+          "y": 9,
+          "w": 18,
+          "h": 64,
+          "damage": 4,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "270": {
+      "name": "many_foot",
+      "pic": 166,
+      "wait": 1,
+      "next": 271,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 29,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 13,
+          "y": 19,
+          "w": 32,
+          "h": 62
+        }
+      ],
+      "itr": [
+        {
+          "x": 17,
+          "y": 35,
+          "w": 61,
+          "h": 13,
+          "damage": 27,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 1,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "271": {
+      "name": "many_foot",
+      "pic": 167,
+      "wait": 1,
+      "next": 272,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 37,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 17,
+          "w": 33,
+          "h": 63
+        }
+      ],
+      "itr": [
+        {
+          "x": 49,
+          "y": 9,
+          "w": 18,
+          "h": 64,
+          "damage": 4,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "272": {
+      "name": "many_foot",
+      "pic": 168,
+      "wait": 1,
+      "next": 273,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 20,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 9,
+          "y": 14,
+          "w": 36,
+          "h": 65
+        }
+      ],
+      "itr": [
+        {
+          "x": 49,
+          "y": 9,
+          "w": 18,
+          "h": 64,
+          "damage": 4,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "273": {
+      "name": "many_foot",
+      "pic": 169,
+      "wait": 1,
+      "next": 274,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 9,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 0,
+          "y": 15,
+          "w": 35,
+          "h": 66
+        }
+      ],
+      "itr": [
+        {
+          "x": 11,
+          "y": 20,
+          "w": 56,
+          "h": 60,
+          "damage": 27,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 60
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "274": {
+      "name": "many_foot",
+      "pic": 179,
+      "wait": 1,
+      "next": 275,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 15,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 3,
+          "y": 17,
+          "w": 40,
+          "h": 64
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "275": {
+      "name": "many_foot",
+      "pic": 178,
+      "wait": 1,
+      "next": 276,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 24,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 9,
+          "y": 17,
+          "w": 39,
+          "h": 66
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "276": {
+      "name": "many_foot",
+      "pic": 178,
+      "wait": 1,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 24,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 17,
+          "w": 33,
+          "h": 63
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "280": {
+      "name": "c_foot",
+      "pic": 170,
+      "wait": 1,
+      "next": 281,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 38,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 24,
+          "y": 21,
+          "w": 32,
+          "h": 58
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "281": {
+      "name": "c_foot",
+      "pic": 171,
+      "wait": 1,
+      "next": 282,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 33,
+      "centery": 78,
+      "bdy": [
+        {
+          "x": 16,
+          "y": 12,
+          "w": 31,
+          "h": 62
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "282": {
+      "name": "c_foot",
+      "pic": 172,
+      "wait": 1,
+      "next": 283,
+      "state": "attacking",
+      "dvx": 1,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 30,
+      "centery": 82,
+      "bdy": [
+        {
+          "x": 13,
+          "y": 3,
+          "w": 41,
+          "h": 37
+        }
+      ],
+      "itr": [
+        {
+          "x": 72,
+          "y": 5,
+          "w": 18,
+          "h": 73,
+          "damage": 4,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        },
+        {
+          "x": 20,
+          "y": 13,
+          "w": 64,
+          "h": 58,
+          "damage": 35,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 20,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "283": {
+      "name": "c_foot",
+      "pic": 173,
+      "wait": 1,
+      "next": 284,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 29,
+      "centery": 87,
+      "bdy": [
+        {
+          "x": 14,
+          "y": 5,
+          "w": 37,
+          "h": 37
+        }
+      ],
+      "itr": [
+        {
+          "x": 47,
+          "y": 12,
+          "w": 17,
+          "h": 60,
+          "damage": 4,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 20,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "284": {
+      "name": "c_foot",
+      "pic": 174,
+      "wait": 1,
+      "next": 285,
+      "state": "attacking",
+      "dvx": 10,
+      "dvy": 0,
+      "dvz": 1,
+      "centerx": 38,
+      "centery": 89,
+      "bdy": [
+        {
+          "x": 28,
+          "y": 9,
+          "w": 32,
+          "h": 35
+        }
+      ],
+      "itr": [
+        {
+          "x": -1,
+          "y": 9,
+          "w": 70,
+          "h": 71,
+          "damage": 4,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        },
+        {
+          "x": 3,
+          "y": 11,
+          "w": 62,
+          "h": 65,
+          "damage": 35,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 20,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 288,
+      "hit_d": 288
+    },
+    "285": {
+      "name": "c_foot",
+      "pic": 175,
+      "wait": 1,
+      "next": 286,
+      "state": "attacking",
+      "dvx": 10,
+      "dvy": 0,
+      "dvz": 2,
+      "centerx": 33,
+      "centery": 85,
+      "bdy": [
+        {
+          "x": 24,
+          "y": 6,
+          "w": 31,
+          "h": 35
+        }
+      ],
+      "itr": [
+        {
+          "x": 49,
+          "y": 9,
+          "w": 18,
+          "h": 64,
+          "damage": 4,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 288,
+      "hit_d": 288
+    },
+    "286": {
+      "name": "c_foot",
+      "pic": 176,
+      "wait": 1,
+      "next": 287,
+      "state": "attacking",
+      "dvx": 10,
+      "dvy": 0,
+      "dvz": 1,
+      "centerx": 27,
+      "centery": 85,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 11,
+          "w": 32,
+          "h": 30
+        }
+      ],
+      "itr": [
+        {
+          "x": 77,
+          "y": 8,
+          "w": 14,
+          "h": 64,
+          "damage": 4,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 70,
+          "bdefend": 16
+        },
+        {
+          "x": 25,
+          "y": 13,
+          "w": 61,
+          "h": 56,
+          "damage": 35,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 20,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 288,
+      "hit_d": 288
+    },
+    "287": {
+      "name": "c_foot",
+      "pic": 173,
+      "wait": 1,
+      "next": 284,
+      "state": "attacking",
+      "dvx": 10,
+      "dvy": 0,
+      "dvz": 2,
+      "centerx": 31,
+      "centery": 85,
+      "bdy": [
+        {
+          "x": 22,
+          "y": 11,
+          "w": 31,
+          "h": 32
+        }
+      ],
+      "itr": [
+        {
+          "x": 52,
+          "y": 5,
+          "w": 11,
+          "h": 70,
+          "damage": 4,
+          "knockbackX": 10,
+          "knockbackY": 0,
+          "fall": 20,
+          "bdefend": 16
+        }
+      ],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 288,
+      "hit_d": 288
+    },
+    "288": {
+      "name": "c_foot",
+      "pic": 177,
+      "wait": 1,
+      "next": 289,
+      "state": "attacking",
+      "dvx": 3,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 76,
+      "bdy": [
+        {
+          "x": 18,
+          "y": 10,
+          "w": 37,
+          "h": 30
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "289": {
+      "name": "c_foot",
+      "pic": 180,
+      "wait": 1,
+      "next": 290,
+      "state": "attacking",
+      "dvx": 2,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 78,
+      "bdy": [
+        {
+          "x": 26,
+          "y": 19,
+          "w": 34,
+          "h": 61
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "290": {
+      "name": "c_foot",
+      "pic": 178,
+      "wait": 2,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 29,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 20,
+          "w": 36,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "295": {
+      "name": "chase_ball",
+      "pic": 181,
+      "wait": 2,
+      "next": 296,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 24,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 20,
+          "w": 36,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "296": {
+      "name": "chase_ball",
+      "pic": 182,
+      "wait": 2,
+      "next": 297,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 24,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 20,
+          "w": 36,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "297": {
+      "name": "chase_ball",
+      "pic": 183,
+      "wait": 2,
+      "next": 298,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 24,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 20,
+          "w": 36,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "298": {
+      "name": "chase_ball",
+      "pic": 184,
+      "wait": 1,
+      "next": 299,
+      "state": "attacking",
+      "dvx": 6,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 31,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 20,
+          "w": 36,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [
+        {
+          "kind": 1,
+          "x": 88,
+          "y": 42,
+          "action": 0,
+          "dvx": 0,
+          "dvy": 0,
+          "oid": 215,
+          "facing": 0
+        }
+      ],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "299": {
+      "name": "chase_ball",
+      "pic": 185,
+      "wait": 4,
+      "next": 300,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 20,
+          "w": 36,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "300": {
+      "name": "chase_ball",
+      "pic": 186,
+      "wait": 2,
+      "next": 301,
+      "state": "attacking",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 41,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 20,
+          "w": 36,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "301": {
+      "name": "chase_ball",
+      "pic": 187,
+      "wait": 2,
+      "next": 999,
+      "state": "attacking",
+      "dvx": 3,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 36,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 12,
+          "y": 20,
+          "w": 36,
+          "h": 60
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    },
+    "399": {
+      "name": "dummy",
+      "pic": 0,
+      "wait": 0,
+      "next": 0,
+      "state": "standing",
+      "dvx": 0,
+      "dvy": 0,
+      "dvz": 0,
+      "centerx": 39,
+      "centery": 79,
+      "bdy": [
+        {
+          "x": 21,
+          "y": 18,
+          "w": 43,
+          "h": 62
+        }
+      ],
+      "itr": [],
+      "opoint": [],
+      "hit_a": 0,
+      "hit_j": 0,
+      "hit_d": 0
+    }
+  }
+}

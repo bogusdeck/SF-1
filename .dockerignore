@@ -1,0 +1,8 @@
+node_modules
+android
+ios
+resources
+dist
+.git
+.gemini
+*.log
